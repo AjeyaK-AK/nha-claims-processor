@@ -22,7 +22,7 @@ TESSERACT_CMD = os.environ.get("TESSERACT_CMD", "tesseract")  # use PATH
 OCR_LANGUAGES = ["en", "hi"]          # easyocr language list
 TESSERACT_LANG = "eng"                # tesseract lang string (hin requires separate pack)
 USE_EASYOCR_FALLBACK = os.environ.get("USE_EASYOCR", "0") == "1"  # off by default (slow download)
-PDF_DPI = 200                          # DPI when rendering PDF page to image
+PDF_DPI = 150                          # DPI when rendering PDF page to image (150 balances speed and OCR accuracy)
 MIN_TEXT_LENGTH = 20                   # chars – below this, re-run with image OCR
 
 # ── Classification thresholds ────────────────────────────────────────────────

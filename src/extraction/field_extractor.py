@@ -113,27 +113,37 @@ def _find_dates_in_text(text: str) -> List[date]:
 
 def _extract_contextual_date(text: str, context_keywords: List[str]) -> Optional[date]:
     """
-    Look for a date within 150 characters of any context keyword.
+    Look for a date within 250 characters after any context keyword,
+    or 80 characters before it (date often appears before the label in Indian forms).
     """
     text_lower = text.lower()
     for kw in context_keywords:
         idx = text_lower.find(kw)
         if idx == -1:
             continue
-        window = text[max(0, idx - 20): idx + 150]
+        # Wide window: 80 chars before keyword + 250 chars after
+        window = text[max(0, idx - 80): idx + 250]
         d = _parse_date(window)
         if d:
             return d
     return None
 
 
-ADMISSION_KEYWORDS  = ["date of admission", "admitted on", "admission date", "doa:", "d.o.a",
-                        "admn.", "admission", "admit date"]
-DISCHARGE_KEYWORDS  = ["date of discharge", "discharged on", "discharge date", "dod:", "d.o.d",
-                        "discharge"]
-PROCEDURE_KEYWORDS  = ["date of procedure", "date of surgery", "procedure date",
-                        "date of operation", "dos:", "date of ot", "angiography done on",
-                        "ptca done on", "surgery done on", "operation date", "surgery date"]
+ADMISSION_KEYWORDS  = [
+    "date of admission", "admitted on", "admission date", "doa:", "d.o.a",
+    "admn.", "admission", "admit date", "date admitted", "date of admission:",
+    "adm. date", "adm date", "ipd date", "in-patient date", "registration date",
+]
+DISCHARGE_KEYWORDS  = [
+    "date of discharge", "discharged on", "discharge date", "dod:", "d.o.d",
+    "discharge", "date of discharge:", "dis. date", "dis date",
+]
+PROCEDURE_KEYWORDS  = [
+    "date of procedure", "date of surgery", "procedure date",
+    "date of operation", "dos:", "date of ot", "angiography done on",
+    "ptca done on", "surgery done on", "operation date", "surgery date",
+    "date of operation:", "procedure done on", "intervention date",
+]
 
 
 # ── Field extraction patterns ──────────────────────────────────────────────────
@@ -218,6 +228,50 @@ _DOCTOR_PATTERNS = [
     r"(?:treating\s+physician|surgeon|doctor)\s*[:\-]\s*([A-Za-z][A-Za-z\s\.]{3,40})",
 ]
 
+# Words that indicate a captured "name" is actually an OCR sentence fragment, not a real name
+_NAME_NOISE_WORDS = {
+    "and", "the", "by", "of", "during", "your", "for", "from", "in", "at", "on",
+    "to", "with", "this", "that", "was", "has", "have", "been", "are", "is",
+    "measures", "kidney", "condition", "grade", "activity", "left", "right",
+    "upper", "lower", "please", "doctor", "hospital", "patient", "treatment",
+    "following", "discharge", "admission", "investigation",
+}
+
+_HOSPITAL_NOISE_WORDS = {
+    "during", "your", "by", "treating", "physician", "invoice", "tax",
+    "the", "ally", "ste", "all",
+}
+
+
+def _is_valid_patient_name(val: str) -> bool:
+    """Return True only if the extracted value looks like a real patient name."""
+    if not val or len(val) < 3:
+        return False
+    words = val.split()
+    if len(words) > 6:
+        return False
+    # Reject if any word is a known noise/function word
+    for w in words:
+        if w.lower() in _NAME_NOISE_WORDS:
+            return False
+    # First word must start with a capital letter
+    if not words[0][0].isupper():
+        return False
+    return True
+
+
+def _is_valid_hospital_name(val: str) -> bool:
+    """Return True only if extracted value looks like a real hospital name."""
+    if not val or len(val) < 4:
+        return False
+    # Strip leading/trailing whitespace and collapse internal \n
+    val = val.split("\n")[0].strip()
+    words = val.split()
+    for w in words[:3]:   # Check first 3 words for noise
+        if w.lower() in _HOSPITAL_NOISE_WORDS:
+            return False
+    return True
+
 
 def _first_match(patterns: List[str], text: str) -> Optional[str]:
     for p in patterns:
@@ -248,12 +302,15 @@ class FieldExtractor:
     def extract(self, pages, claim_id: str, package_code: str) -> ExtractedFields:
         ef = ExtractedFields(claim_id=claim_id, package_code=package_code)
 
-        # Sort pages: discharge summaries first (richest source), then others
+        # Sort pages: discharge summaries first (richest source), then admission forms, then others
         ordered = sorted(pages, key=lambda p: (
             0 if "DISCHARGE" in p.doc_id.upper() or "DIS" in p.doc_id.upper() else
             1 if "CASE" in p.doc_id.upper() or "CLINICAL" in p.doc_id.upper() else
             2
         ))
+
+        # Collect all dates appearing in discharge summary pages for fallback
+        _discharge_page_dates: List[date] = []
 
         for page in ordered:
             text = page.text or ""
@@ -264,7 +321,7 @@ class FieldExtractor:
             # ── Patient name ─────────────────────────────────────────────────
             if ef.patient_name is None:
                 val = _first_match(_PATIENT_NAME_PATTERNS, text)
-                if val and len(val) > 2:
+                if val and _is_valid_patient_name(val):
                     ef.patient_name = val
                     pref = _make_prov("patient_name", val, doc_id, sp, pn, 0.80)
                     ef.patient_name_provenance = pref
@@ -309,6 +366,11 @@ class FieldExtractor:
                     ef.discharge_date_provenance = pref
                     ef.all_provenance.append(pref)
 
+            # ── Collect dates from discharge/admission pages for fallback ──────
+            is_discharge_page = ("DISCHARGE" in doc_id.upper() or "DIS" in doc_id.upper())
+            if is_discharge_page or "ADMISSION" in doc_id.upper() or "ADM" in doc_id.upper():
+                _discharge_page_dates.extend(_find_dates_in_text(text))
+
             # ── Procedure date ────────────────────────────────────────────────
             if ef.procedure_date is None:
                 d = _extract_contextual_date(text, PROCEDURE_KEYWORDS)
@@ -322,7 +384,18 @@ class FieldExtractor:
             for p in _DIAGNOSIS_PATTERNS:
                 for m in re.finditer(p, text, re.IGNORECASE):
                     val = m.group(1).strip()
-                    if val and val not in ef.diagnosis and len(val) >= 3:
+                    # Filter out garbled OCR — require >60% alpha characters
+                    if not val or len(val) < 3:
+                        continue
+                    alpha_ratio = sum(c.isalpha() for c in val) / max(len(val), 1)
+                    if alpha_ratio < 0.60:
+                        continue
+                    # Reject if it looks like a sentence fragment (too many short words)
+                    words = val.split()
+                    noise_words = sum(1 for w in words if w.lower() in _NAME_NOISE_WORDS)
+                    if len(words) > 2 and noise_words / len(words) > 0.4:
+                        continue
+                    if val not in ef.diagnosis:
                         ef.diagnosis.append(val)
                         ef.all_provenance.append(
                             _make_prov("diagnosis", val, doc_id, sp, pn, 0.72)
@@ -349,13 +422,34 @@ class FieldExtractor:
             # ── Hospital name ────────────────────────────────────────────────
             if ef.hospital_name is None:
                 val = _first_match(_HOSPITAL_PATTERNS, text)
-                if val:
-                    ef.hospital_name = val
+                if val and _is_valid_hospital_name(val):
+                    ef.hospital_name = val.split("\n")[0].strip()
 
             # ── Doctor name ──────────────────────────────────────────────────
             if ef.doctor_name is None:
                 val = _first_match(_DOCTOR_PATTERNS, text)
                 if val and len(val.split()) >= 2:
                     ef.doctor_name = val
+
+        # ── Date fallback: use first/last dates from discharge/admission pages ─
+        # When keyword-based extraction fails (no contextual label near date),
+        # heuristically assign the earliest date as admission, latest as discharge.
+        if _discharge_page_dates:
+            valid_dates = sorted(
+                d for d in _discharge_page_dates if 2000 <= d.year <= 2030
+            )
+            if valid_dates:
+                if ef.admission_date is None and len(valid_dates) >= 1:
+                    ef.admission_date = valid_dates[0]
+                    pref = _make_prov("admission_date", str(valid_dates[0]),
+                                      claim_id, "", 0, 0.55)
+                    ef.admission_date_provenance = pref
+                    ef.all_provenance.append(pref)
+                if ef.discharge_date is None and len(valid_dates) >= 2:
+                    ef.discharge_date = valid_dates[-1]
+                    pref = _make_prov("discharge_date", str(valid_dates[-1]),
+                                      claim_id, "", 0, 0.55)
+                    ef.discharge_date_provenance = pref
+                    ef.all_provenance.append(pref)
 
         return ef

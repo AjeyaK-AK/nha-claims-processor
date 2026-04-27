@@ -45,7 +45,7 @@ rules:
     name: "Pre-authorization form present"
     type: document_presence
     required_doc: preauthorization_form
-    severity: critical
+    severity: major
     message: "Pre-authorization form is mandatory."
 
   - id: R003
@@ -136,3 +136,31 @@ rules:
                "acetabular cup", "stem", "cement"]
     severity: major
     message: "Operative notes must document implant components used."
+
+  - id: R015
+    name: "Patient name extractable"
+    type: field_not_blank
+    field: patient_name
+    severity: minor
+    message: "Patient name could not be extracted."
+
+  - id: R016
+    name: "Admission date documented"
+    type: field_not_blank
+    field: admission_date
+    severity: major
+    message: "Admission date must be clearly documented."
+
+  - id: R017
+    name: "Discharge date documented"
+    type: field_not_blank
+    field: discharge_date
+    severity: major
+    message: "Discharge date must be clearly documented."
+
+  - id: R018
+    name: "Procedure date documented"
+    type: field_not_blank
+    field: procedure_date
+    severity: major
+    message: "The date of surgery must be extractable from submitted records."

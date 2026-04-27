@@ -60,13 +60,32 @@ FILENAME_LABEL_MAP: Dict[str, str] = {
     "ADM1": ADMISSION_FORM,
     "ADDMIT": ADMISSION_FORM,
 
-    # Pre-auth
+    # Pre-auth / PMJAY eligibility
     "PRE_AUTH": PREAUTH_FORM,
     "PREAUTH": PREAUTH_FORM,
     "AUTHORIZATION": PREAUTH_FORM,
     "AUTHORISATION": PREAUTH_FORM,
     "01_PRE_AUTHORIZATION_FORM": PREAUTH_FORM,
     "PRE_AUTHORIZATION": PREAUTH_FORM,
+    "PRE_AUTH_FORM": PREAUTH_FORM,
+    "PREAUTHFORM": PREAUTH_FORM,
+    "PA": PREAUTH_FORM,              # Pre-Authorization shorthand
+    "PA1": PREAUTH_FORM,
+    "PA2": PREAUTH_FORM,
+    "AUTH": PREAUTH_FORM,
+    "AUTH_FORM": PREAUTH_FORM,
+    "PMJAY_AUTH": PREAUTH_FORM,
+    "ELIGIBILITY": PREAUTH_FORM,
+    "ELIGIBILITY_FORM": PREAUTH_FORM,
+    "PMJAY_ELIGIBILITY": PREAUTH_FORM,
+    "AB_PMJAY": PREAUTH_FORM,        # Ayushman Bharat PMJAY form
+    "ABPMJAY": PREAUTH_FORM,
+    "PRE_CLAIM_FORM": PREAUTH_FORM,
+    "PRE_CLAIM": PREAUTH_FORM,
+    "CLAIM_FORM": PREAUTH_FORM,
+    "EMPANELMENT_FORM": PREAUTH_FORM,
+    "DECLARATION_FORM": PREAUTH_FORM,
+    "DECLARATION": PREAUTH_FORM,
     "PAC_REPORT": ANESTHESIA_NOTES,
 
     # Consent
@@ -165,6 +184,7 @@ FILENAME_LABEL_MAP: Dict[str, str] = {
     "NEW_CBC": LAB_INVESTIGATION,
 
     # Radiology / X-ray
+    "ZX": XRAY_IMAGE,            # Z-axis X-ray or shorthand X-ray label
     "XRAY": XRAY_IMAGE,
     "X_RAY": XRAY_IMAGE,
     "X-RAY": XRAY_IMAGE,
@@ -267,6 +287,7 @@ FILENAME_LABEL_MAP: Dict[str, str] = {
     "FEED": FEEDBACK_FORM,
     "FEDD": FEEDBACK_FORM,
     "FB": FEEDBACK_FORM,
+    "DF": DISCHARGE_SUMMARY,      # Discharge Form (common hospital shorthand)
 
     # Identity
     "ADHAR": IDENTITY_DOCUMENT,
@@ -274,6 +295,11 @@ FILENAME_LABEL_MAP: Dict[str, str] = {
     "CARD": IDENTITY_DOCUMENT,
     "PMAM": IDENTITY_DOCUMENT,
     "ID": IDENTITY_DOCUMENT,
+    "PP": IDENTITY_DOCUMENT,      # Patient Photo (common label in PMJAY claims)
+    "PH": IDENTITY_DOCUMENT,      # Patient Health card / photo
+    "PMJAY_CARD": IDENTITY_DOCUMENT,
+    "E_CARD": IDENTITY_DOCUMENT,
+    "ECARD": IDENTITY_DOCUMENT,
 
     # Barcode / sticker
     "BARCODE": BARCODE_STICKER,
@@ -287,7 +313,8 @@ FILENAME_LABEL_MAP: Dict[str, str] = {
 
     # Enhancement record
     "ENHANCEMENT_RECORD": ENHANCEMENT_RECORD,
-    "ENC": ENHANCEMENT_RECORD,
+    # ENC = Encounter/Clinical notes (NOT enhancement record — common hospital shorthand)
+    "ENC": CLINICAL_NOTES,
 
     # Birth proof – treated as identity document for NHA claim purposes
     "BIRTH_PROOF": IDENTITY_DOCUMENT,
@@ -316,7 +343,7 @@ FILENAME_LABEL_MAP: Dict[str, str] = {
     "PUSHPA_DISCHARGE_2_6": DISCHARGE_SUMMARY,
 
     # Clinical Notes – additional real-world label variants
-    "CN": CLINICAL_NOTES,
+    "CN": CASE_SHEET,           # CN = Case Notes / Clinical Notes = IP case sheet in Indian hospitals
     "CL": CLINICAL_NOTES,
     "CLINIC": CLINICAL_NOTES,
     "DEVI_DAS_CLINICAL_NOTES": CLINICAL_NOTES,
@@ -407,6 +434,7 @@ FILENAME_LABEL_MAP: Dict[str, str] = {
     # Medication chart
     "DEVI_DAS_MEDICATION_CHART": MEDICATION_CHART,
     "DIS-MEDICINE": MEDICATION_CHART,
+    "MED_SUM": MEDICATION_CHART,   # Medicine Summary
 
     # Enhancement record – date-suffixed variants
     "DEVI_DAS_ENHANCE": ENHANCEMENT_RECORD,
@@ -426,72 +454,244 @@ FILENAME_LABEL_MAP: Dict[str, str] = {
 }
 
 # ── Keyword lists for content-based classification ────────────────────────────
+# Each list has a "STRONG" prefix group (highly distinctive) followed by
+# common supporting signals. The scorer weights the first N as 2× hits.
 CONTENT_KEYWORDS: Dict[str, List[str]] = {
     DISCHARGE_SUMMARY: [
-        "discharge summary", "date of discharge", "final diagnosis",
-        "condition at discharge", "discharged on", "date of admission",
-        "discharge date", "follow up", "length of stay",
+        # Strong / distinctive
+        "discharge summary", "date of discharge", "condition at discharge",
+        "discharged on", "discharge date", "final diagnosis", "follow up advice",
+        "discharge instructions", "discharge note",
+        # Supporting
+        "date of admission", "length of stay", "summary of treatment",
+        "treatment given", "follow up", "advised to follow",
     ],
     ADMISSION_FORM: [
-        "admission", "date of admission", "admitted on", "patient admitted",
-        "pre operative", "pre-operative", "initial assessment", "triage",
+        # Strong
+        "admission form", "date of admission", "admitted on",
+        "initial assessment", "triage note", "pre-operative assessment",
+        "pre operative", "presenting complaints", "ipd admission",
+        # Supporting
+        "patient admitted", "admitting diagnosis", "admn.", "admission date",
+        "ward admission", "emergency admission",
     ],
     OPERATIVE_NOTES: [
-        "operation theatre", "operative note", "surgery performed",
-        "intraoperative", "anaesthesia given", "surgeon", "scrub nurse",
-        "procedure performed", "incision", "post operative",
+        # Strong
+        "operative note", "operation theatre", "ot note", "surgery performed",
+        "intraoperative findings", "post operative", "scrub nurse",
+        "anaesthesia given", "procedure performed",
+        # Supporting
+        "surgeon", "incision", "blood loss", "haemostasis", "sutures",
+        "closure", "specimen sent", "instrument count",
     ],
     CLINICAL_NOTES: [
-        "patient complains", "on examination", "clinical notes",
-        "progress note", "doctor notes", "day notes", "icу", "ward rounds",
-        "bp:", "pulse:", "spo2", "temperature:",
+        # Strong
+        "progress note", "daily note", "doctor note", "clinical notes",
+        "ward rounds", "icу note", "icp note", "patient complains",
+        "on examination", "vitals noted",
+        # Supporting
+        "bp:", "pulse:", "spo2", "temperature:", "respiratory rate",
+        "plan:", "assessment:", "impression:",
     ],
-    LAB_INVESTIGATION: [
-        "haemoglobin", "wbc", "platelets", "creatinine", "bilirubin",
-        "sgpt", "sgot", "blood urea", "serum", "hba1c", "urine report",
-        "culture sensitivity", "complete blood count",
-    ],
-    XRAY_IMAGE: [
-        "x-ray", "xray", "radiograph", "chest pa", "ap view",
-        "bones appear", "no pneumothorax", "fracture",
-    ],
-    ANGIOGRAPHY_REPORT: [
-        "coronary angiography", "cag", "lad", "lcx", "rca",
-        "stenosis", "occlusion", "ejection fraction", "ptca",
-        "stent deployed", "angiogram", "cath no", "catheterization",
-        "cardiovascular", "diag", "cardiologist",
-    ],
-    PROCEDURE_REPORT: [
-        "ptca", "percutaneous", "coronary intervention", "stent",
-        "balloon", "guidewire", "catheter lab", "phacoemulsification",
-        "cataract extraction", "iol implanted", "intraocular lens",
-    ],
-    BARCODE_STICKER: [
-        "ref:", "lot:", "serial no", "serial number", "model no", "catalog",
-        "manufactured by", "udi", "implant", "device", "batch no",
-    ],
-    USG_REPORT: [
-        "ultrasonography", "usg", "ultrasound", "liver size",
-        "gall bladder", "kidneys", "echogenicity", "no free fluid",
-    ],
-    IVP_REPORT: [
-        "intravenous pyelogram", "ivp", "kub", "collecting system",
-        "pelvi-calyceal", "ureter", "bladder outline",
-    ],
-    BILL_INVOICE: [
-        "total amount", "room charges", "ot charges", "package amount",
-        "hospital bill", "invoice", "balance due", "amount paid",
-    ],
-    IDENTITY_DOCUMENT: [
-        "aadhaar", "aadhar", "beneficiary id", "pmjay id",
-        "date of birth", "uid:", "enrolment",
-    ],
-    FEEDBACK_FORM: [
-        "feedback", "patient satisfaction", "rate your experience",
-        "grievance", "how was your stay",
+    NURSING_NOTES: [
+        # Strong
+        "nurses note", "nursing note", "nursing record", "nurse observation",
+        "shift note", "handover note",
+        # Supporting
+        "patient comfortable", "iv site", "urine output", "bowel movement",
+        "wound dressing", "patient resting", "nurse signature",
     ],
     MEDICATION_CHART: [
-        "drug name", "dosage", "route", "frequency", "medication",
-        "tablets", "injection", "iv drip", "administered",
+        # Strong
+        "medication chart", "drug chart", "treatment chart",
+        "drug name", "dosage", "route", "frequency",
+        # Supporting
+        "tablets", "injection", "iv drip", "administered", "dispensed",
+        "prescribed", "syrup", "capsules",
+    ],
+    LAB_INVESTIGATION: [
+        # Strong
+        "laboratory report", "haemoglobin", "wbc", "platelets",
+        "complete blood count", "cbc", "culture sensitivity",
+        "serum creatinine", "blood urea nitrogen",
+        # Supporting
+        "sgpt", "sgot", "bilirubin", "hba1c", "urine report",
+        "serum", "rbc", "neutrophils", "lymphocytes", "hb:",
+        "reference range", "normal range", "pathologist",
+    ],
+    RADIOLOGY_REPORT: [
+        # Strong
+        "radiology report", "x-ray report", "radiological findings",
+        "impression:", "opinion:", "chest pa view", "findings:",
+        # Supporting
+        "radiologist", "bones appear", "soft tissue", "cardiac silhouette",
+        "no pneumothorax", "lungs clear", "fracture", "radiograph",
+    ],
+    XRAY_IMAGE: [
+        # Strong
+        "x-ray", "xray", "chest pa", "ap view", "x ray film",
+        # Supporting
+        "radiograph", "no pneumothorax", "fracture seen",
+    ],
+    ANGIOGRAPHY_REPORT: [
+        # Strong
+        "coronary angiography", "coronary angiogram", "cag report",
+        "lad", "lcx", "rca", "stenosis", "ejection fraction",
+        "ptca", "stent deployed", "catheterization",
+        # Supporting
+        "angiogram", "cath no", "cardiovascular", "cardiologist",
+        "left anterior descending", "right coronary", "occlusion",
+        "drug eluting stent", "balloon",
+    ],
+    PROCEDURE_REPORT: [
+        # Strong
+        "ptca report", "percutaneous coronary", "coronary intervention",
+        "phacoemulsification", "intraocular lens", "iol implanted",
+        "cataract extraction", "endoscopy report",
+        # Supporting
+        "stent", "guidewire", "catheter lab", "balloon",
+        "procedure performed", "procedure note",
+    ],
+    USG_REPORT: [
+        # Strong
+        "ultrasonography", "ultrasound report", "usg report", "usg abdomen",
+        "sonography", "echogenicity",
+        # Supporting
+        "liver size", "gall bladder", "kidneys", "no free fluid",
+        "uterus", "ovary", "probe", "scan findings",
+    ],
+    IVP_REPORT: [
+        # Strong
+        "intravenous pyelogram", "ivp", "kub film", "ivp report",
+        "collecting system", "pelvi-calyceal",
+        # Supporting
+        "ureter", "bladder outline", "kidney shadow", "contrast",
+    ],
+    CT_MRI_REPORT: [
+        # Strong
+        "ct scan", "mri report", "computed tomography", "magnetic resonance",
+        "ct report", "mri brain", "ct abdomen", "mri spine",
+        # Supporting
+        "axial sections", "coronal", "sagittal", "contrast enhanced",
+        "hounsfield", "t1w", "t2w",
+    ],
+    ENDOSCOPY_REPORT: [
+        # Strong
+        "endoscopy report", "colonoscopy", "upper gi endoscopy", "oesophagoscopy",
+        # Supporting
+        "mucosa", "polyp", "biopsy taken", "scope", "gastroscopy",
+    ],
+    BILL_INVOICE: [
+        # Strong
+        "hospital bill", "patient bill", "invoice", "total amount",
+        "bill of charges", "package amount", "final bill",
+        # Supporting
+        "room charges", "ot charges", "balance due", "amount paid",
+        "net payable", "grand total",
+    ],
+    IDENTITY_DOCUMENT: [
+        # Strong
+        "aadhaar", "aadhar", "pmjay id", "beneficiary id", "uid:",
+        # Supporting
+        "enrolment", "date of birth", "voter id", "ration card",
+    ],
+    FEEDBACK_FORM: [
+        # Strong
+        "feedback form", "patient satisfaction", "patient feedback",
+        "rate your experience", "how was your stay",
+        # Supporting
+        "grievance", "suggestion", "overall experience",
+        "would you recommend", "staff behaviour",
+    ],
+    IMPLANT_STICKER: [
+        # Strong
+        "ref:", "lot:", "serial no", "serial number", "model no",
+        "manufactured by", "udi", "implant",
+        # Supporting
+        "catalog", "batch no", "device", "sterile", "expiry",
+    ],
+    BARCODE_STICKER: [
+        # Strong
+        "ref:", "lot:", "batch no", "barcode",
+        # Supporting
+        "udi", "manufactured", "serial no",
+    ],
+    CONSENT_FORM: [
+        # Strong
+        "consent form", "i hereby consent", "informed consent",
+        "i agree to", "patient consent", "guardian consent",
+        # Supporting
+        "voluntary consent", "risks explained", "procedure consent",
+        "declaration", "patient/guardian signature",
+    ],
+    CASE_SHEET: [
+        # Strong
+        "case sheet", "case record", "bed head ticket", "bht",
+        "ipd case", "clinical history", "chief complaint",
+        # Supporting
+        "past history", "personal history", "family history",
+        "systemic examination", "local examination",
+        "provisional diagnosis", "differential diagnosis",
+    ],
+    PREAUTH_FORM: [
+        # Strong
+        "pre authorisation", "pre authorization", "preauth",
+        "pmjay pre", "authorization form", "eligibility form",
+        "ab pmjay", "ayushman bharat", "pre-auth", "pre auth form",
+        # Supporting
+        "beneficiary name", "pmjay id", "hospital empanelment",
+        "package code", "estimated cost", "treatment package",
+        "empanelment code", "pre-authorization request", "claim authorization",
+    ],
+    ANESTHESIA_NOTES: [
+        # Strong
+        "anaesthesia record", "anesthesia record", "pre anaesthetic",
+        "intraoperative anaesthesia", "pac report",
+        # Supporting
+        "airway assessment", "asa grade", "intubation",
+        "spinal anaesthesia", "general anaesthesia", "isoflurane",
+    ],
+    VITAL_CHART: [
+        # Strong
+        "vital chart", "tpr chart", "vital signs chart",
+        "temperature pulse respiration", "intake output chart",
+        # Supporting
+        "bp chart", "pulse oximetry", "daily vitals", "tpr",
+    ],
+    BEDSIDE_CHART: [
+        # Strong
+        "bedside chart", "bed chart", "patient care chart",
+        # Supporting
+        "nursing chart", "ward chart",
+    ],
+    REFERRAL_LETTER: [
+        # Strong
+        "referral letter", "referred to", "refer to", "referral note",
+        # Supporting
+        "for further management", "higher centre",
+    ],
+    PRESCRIPTION: [
+        # Strong
+        "prescription", "rx", "rx:", "prescribed by",
+        # Supporting
+        "take tablet", "take capsule", "advised tablet",
+    ],
+    ENHANCEMENT_RECORD: [
+        # Strong
+        "enhancement record", "enhancement request", "treatment enhancement",
+        # Supporting
+        "additional treatment", "enhancement amount",
+    ],
+    GEOTAG_PHOTO: [
+        # Strong
+        "geotag", "geotagged photo", "location photo",
+        # Supporting
+        "latitude", "longitude", "coordinates",
+    ],
+    BIRTH_PROOF: [
+        # Strong
+        "birth certificate", "date of birth proof",
+        # Supporting
+        "born on", "municipal birth",
     ],
 }

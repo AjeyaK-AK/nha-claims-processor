@@ -44,7 +44,7 @@ rules:
     name: "Pre-authorization form present"
     type: document_presence
     required_doc: preauthorization_form
-    severity: critical
+    severity: major
     message: "Pre-authorization form is mandatory."
 
   - id: R003
@@ -120,3 +120,31 @@ rules:
                "hernia", "cholecystectomy", "laparoscop", "gallbladder"]
     severity: major
     message: "Diagnosis must match the surgical package indication."
+
+  - id: R013
+    name: "Patient name extractable from documents"
+    type: field_not_blank
+    field: patient_name
+    severity: minor
+    message: "Patient name could not be extracted from submitted documents."
+
+  - id: R014
+    name: "Admission date documented"
+    type: field_not_blank
+    field: admission_date
+    severity: major
+    message: "Admission date must be clearly documented in submitted records."
+
+  - id: R015
+    name: "Discharge date documented"
+    type: field_not_blank
+    field: discharge_date
+    severity: major
+    message: "Discharge date must be clearly documented in submitted records."
+
+  - id: R016
+    name: "Diagnosis documented"
+    type: field_not_blank
+    field: diagnosis
+    severity: major
+    message: "Diagnosis must be documented in submitted records."

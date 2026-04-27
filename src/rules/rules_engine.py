@@ -70,17 +70,28 @@ def _eval_document_presence(
     doc_type_to_doc_id: Dict[str, str],
 ) -> RuleResult:
     required_doc = rule["required_doc"]
-    present = required_doc in doc_types
+    alternatives = rule.get("alternatives", [])
+
+    # Check primary type first, then any listed alternatives
+    found_doc = None
+    if required_doc in doc_types:
+        found_doc = required_doc
+    else:
+        for alt in alternatives:
+            if alt in doc_types:
+                found_doc = alt
+                break
+    present = found_doc is not None
 
     evidence = []
     if present:
-        doc_id = doc_type_to_doc_id.get(required_doc, "unknown")
+        doc_id = doc_type_to_doc_id.get(found_doc, "unknown")
         evidence.append(RuleEvidence(
             doc_id=doc_id,
             source_path="",
             page_number=1,
             field_name="document_type",
-            value=required_doc,
+            value=found_doc,
             confidence=0.92,
         ))
 
@@ -89,7 +100,7 @@ def _eval_document_presence(
         rule_name=rule["name"],
         passed=present,
         severity=rule["severity"],
-        message=rule["message"] if not present else f"{required_doc} found.",
+        message=rule["message"] if not present else f"{found_doc} found.",
         evidence=evidence,
         confidence=0.92 if present else 1.0,
     )
@@ -300,6 +311,56 @@ def _eval_diagnosis_keyword(rule: dict, ef: ExtractedFields) -> RuleResult:
     )
 
 
+def _eval_field_not_blank(rule: dict, ef: ExtractedFields) -> RuleResult:
+    """
+    Checks that a required extracted field is not None/empty.
+    Supported field names: patient_name, patient_id, admission_date,
+    discharge_date, procedure_date, diagnosis, billed_amount, hospital_name.
+    """
+    field_name = rule["field"]
+    value = getattr(ef, field_name, None)
+
+    # For list fields (e.g. diagnosis) check non-empty list
+    if isinstance(value, list):
+        present = len(value) > 0
+        display = ", ".join(value[:3]) if present else ""
+    else:
+        present = value is not None and str(value).strip() != ""
+        display = str(value) if present else ""
+
+    evidence = []
+    if present:
+        for prov in ef.all_provenance:
+            if prov.field_name == field_name:
+                evidence.append(RuleEvidence(
+                    doc_id=prov.doc_id,
+                    source_path=prov.source_path,
+                    page_number=prov.page_number,
+                    field_name=field_name,
+                    value=display,
+                    confidence=prov.confidence,
+                ))
+                break
+        if not evidence:
+            evidence.append(RuleEvidence(
+                doc_id=ef.claim_id,
+                source_path="",
+                page_number=0,
+                field_name=field_name,
+                value=display,
+                confidence=0.70,
+            ))
+
+    return RuleResult(
+        rule_id=rule["id"], rule_name=rule["name"], passed=present,
+        severity=rule["severity"],
+        message=rule["message"] if not present else
+                f"Field '{field_name}' found: {display}.",
+        evidence=evidence,
+        confidence=0.85 if present else 0.80,
+    )
+
+
 # ── Main Rules Engine class ───────────────────────────────────────────────────
 
 class RulesEngine:
@@ -344,6 +405,8 @@ class RulesEngine:
                     r = _eval_financial(rule, ef)
                 elif rtype == "diagnosis_keyword":
                     r = _eval_diagnosis_keyword(rule, ef)
+                elif rtype == "field_not_blank":
+                    r = _eval_field_not_blank(rule, ef)
                 else:
                     log.warning("Unknown rule type: %s", rtype)
                     continue

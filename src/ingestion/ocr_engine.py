@@ -38,14 +38,22 @@ def ocr_image(img: Image.Image, aggressive: bool = False) -> Tuple[str, float, s
     from src.ingestion.preprocessor import enhance_image, auto_orient  # local import avoids circular
 
     def _tess_run(pil_img, psm: int = 6):
+        # Single OCR call: extract both text and confidence from image_to_data
         data = pytesseract.image_to_data(
             pil_img, lang=TESSERACT_LANG,
             output_type=pytesseract.Output.DICT,
             config=f"--oem 3 --psm {psm}",
         )
         confs = [int(c) for c in data["conf"] if str(c).lstrip("-").isdigit() and int(c) >= 0]
-        text = pytesseract.image_to_string(pil_img, lang=TESSERACT_LANG,
-                                           config=f"--oem 3 --psm {psm}").strip()
+        # Reconstruct text from words with non-negative confidence (avoid two-pass OCR)
+        words = [
+            data["text"][i]
+            for i in range(len(data["text"]))
+            if str(data["conf"][i]).lstrip("-").isdigit()
+               and int(data["conf"][i]) >= 0
+               and data["text"][i].strip()
+        ]
+        text = " ".join(words).strip()
         conf = (sum(confs) / len(confs) / 100.0) if confs else 0.0
         return text, conf
 
@@ -56,7 +64,11 @@ def ocr_image(img: Image.Image, aggressive: bool = False) -> Tuple[str, float, s
     except Exception as exc:
         log.debug("Tesseract raw failed: %s", exc)
 
-    # ── 2. Try enhanced image ─────────────────────────────────────────────────
+    # Early exit: if raw quality is already good, skip enhancement pass
+    if raw_conf >= 0.60 and len(raw_text) >= MIN_TEXT_LENGTH:
+        return raw_text, raw_conf, "tesseract"
+
+    # ── 2. Try enhanced image (only if raw quality is poor) ──────────────────
     enhanced_text, enhanced_conf = "", 0.0
     try:
         processed = enhance_image(img, aggressive=aggressive)

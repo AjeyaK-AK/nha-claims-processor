@@ -42,7 +42,7 @@ rules:
     name: "Pre-authorization form present"
     type: document_presence
     required_doc: preauthorization_form
-    severity: critical
+    severity: major
     message: "Pre-authorization is mandatory for cardiac catheterization."
 
   - id: R003
@@ -106,3 +106,31 @@ rules:
     max_amount: 25000
     severity: minor
     message: "MC011A package ceiling is approximately Rs 25,000 for CAG; PTCA has higher ceiling."
+
+  - id: R011
+    name: "Patient name extractable"
+    type: field_not_blank
+    field: patient_name
+    severity: minor
+    message: "Patient name could not be extracted from submitted documents."
+
+  - id: R012
+    name: "Admission date documented"
+    type: field_not_blank
+    field: admission_date
+    severity: major
+    message: "Admission date must be clearly documented."
+
+  - id: R013
+    name: "Discharge date documented"
+    type: field_not_blank
+    field: discharge_date
+    severity: major
+    message: "Discharge date must be clearly documented."
+
+  - id: R014
+    name: "Cardiac diagnosis documented"
+    type: field_not_blank
+    field: diagnosis
+    severity: major
+    message: "A cardiac diagnosis must be extractable from the submitted documents."

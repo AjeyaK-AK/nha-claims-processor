@@ -1,0 +1,2095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NHA PMJAY Claim Report – PMJAY_PY_S_2025_R3_2026031010034987</title>
+<link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<style>
+  body { font-family: 'Segoe UI', sans-serif; background:#f8f9fa; }
+  .verdict-banner { border-radius:12px; padding:20px 30px; margin-bottom:24px; }
+  .metric-card { background:#fff; border-radius:8px; padding:14px 18px;
+                  border:1px solid #dee2e6; text-align:center; }
+  .metric-card .value { font-size:1.4rem; font-weight:700; }
+  .metric-card .label { font-size:0.8rem; color:#6c757d; }
+  nav.navbar { background:#00448a !important; }
+  .table th { background:#f1f3f5; }
+  pre { background:#f8f9fa; border-radius:6px; padding:8px; font-size:0.8rem; }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark px-4 py-2">
+  <span class="navbar-brand fw-bold">🏥 NHA PMJAY Automated Claims Processor</span>
+  <span class="text-white-50 small">Problem Statement 01 · 2026</span>
+</nav>
+
+<div class="container-fluid py-4">
+
+  <!-- Verdict Banner -->
+  <div class="verdict-banner" style="background:#f8d7da; border:2px solid #dc3545">
+    <div class="d-flex align-items-center gap-4">
+      <h2 style="color:#dc3545;margin:0;font-size:2rem">
+        ❌
+        &nbsp;FAIL
+      </h2>
+      <div>
+        <div class="text-muted small">Claim ID</div>
+        <strong>PMJAY_PY_S_2025_R3_2026031010034987</strong>
+      </div>
+      <div>
+        <div class="text-muted small">Package</div>
+        <strong>MG006A</strong>
+      </div>
+      <div>
+        <div class="text-muted small">Compliance Score</div>
+        <strong style="color:#dc3545">68.6%</strong>
+      </div>
+      <div>
+        <div class="text-muted small">Confidence</div>
+        <strong>86.4%</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Patient Strip -->
+  <div class="row g-3 mb-4">
+    <div class="col"><div class="metric-card">
+      <div class="value">Admission No</div>
+      <div class="label">Patient</div>
+    </div></div>
+    <div class="col"><div class="metric-card">
+      <div class="value">2026-03-10</div>
+      <div class="label">Admission</div>
+    </div></div>
+    <div class="col"><div class="metric-card">
+      <div class="value">2026-03-10</div>
+      <div class="label">Discharge</div>
+    </div></div>
+    <div class="col"><div class="metric-card">
+      <div class="value">—</div>
+      <div class="label">Length of Stay (days)</div>
+    </div></div>
+    <div class="col-4"><div class="metric-card">
+      <div class="value" style="font-size:1rem">ST Elevation Myocardial Infarction, 9 Entorc Fen., VESTIGATIONS, F61</div>
+      <div class="label">Diagnosis</div>
+    </div></div>
+  </div>
+
+  <!-- Rule Summary Pills -->
+  <div class="d-flex gap-3 mb-4">
+    <span class="badge bg-success fs-6 px-3 py-2">✅ 11 Passed</span>
+    <span class="badge bg-danger fs-6 px-3 py-2">🔴 2 Critical</span>
+    <span class="badge bg-warning text-dark fs-6 px-3 py-2">🟠 2 Major</span>
+    <span class="badge bg-secondary fs-6 px-3 py-2">🟡 0 Minor</span>
+  </div>
+
+  <!-- Tabs -->
+  <ul class="nav nav-tabs mb-0" id="mainTabs">
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tabDocs">📄 Document Classification</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabRules">📋 Rule Evaluation</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabTimeline">🕐 Episode Timeline</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabVisual">👁 Visual Elements</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabProv">🔍 Provenance</button></li>
+  </ul>
+
+  <div class="tab-content border border-top-0 rounded-bottom bg-white p-3 mb-4">
+
+    <!-- Tab 1: Document Classification -->
+    <div class="tab-pane fade show active" id="tabDocs">
+      <p class="text-muted small mt-2">Each document classified. Extra/non-required documents flagged.</p>
+      <table class="table table-sm table-hover table-bordered align-middle">
+        <thead><tr>
+          <th>Claim ID</th><th>Document</th><th>Type Detected</th>
+          <th>Confidence</th><th>Signal</th><th>Issues / Flags</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000920__PMJAY_PY_S_2025_R3_2026031010034987__ENHANCEMEN</td>
+          <td><span class="badge bg-info text-dark">Enhancement Record</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000921__PMJAY_PY_S_2025_R3_2026031010034987__ENHANCEMEN</td>
+          <td><span class="badge bg-info text-dark">Enhancement Record</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000922__PMJAY_PY_S_2025_R3_2026031010034987__ENHANCEMEN</td>
+          <td><span class="badge bg-info text-dark">Enhancement Record</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000923__PMJAY_PY_S_2025_R3_2026031010034987__ENHANCEMEN</td>
+          <td><span class="badge bg-info text-dark">Enhancement Record</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000924__PMJAY_PY_S_2025_R3_2026031010034987__ENHANCEMEN</td>
+          <td><span class="badge bg-info text-dark">Enhancement Record</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000925__PMJAY_PY_S_2025_R3_2026031010034987__ENHANCEMEN</td>
+          <td><span class="badge bg-info text-dark">Enhancement Record</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000926__PMJAY_PY_S_2025_R3_2026031010034987__ENHANCEMEN</td>
+          <td><span class="badge bg-info text-dark">Enhancement Record</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000927__PMJAY_PY_S_2025_R3_2026031010034987__ENHANCEMEN</td>
+          <td><span class="badge bg-info text-dark">Enhancement Record</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000928__PMJAY_PY_S_2025_R3_2026031010034987__ENHANCEMEN</td>
+          <td><span class="badge bg-info text-dark">Enhancement Record</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000929__PMJAY_PY_S_2025_R3_2026031010034987__ENHANCEMEN</td>
+          <td><span class="badge bg-info text-dark">Enhancement Record</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000930__PMJAY_PY_S_2025_R3_2026031010034987__ENHANCEMEN</td>
+          <td><span class="badge bg-info text-dark">Enhancement Record</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000931__PMJAY_PY_S_2025_R3_2026031010034987__ENHANCEMEN</td>
+          <td><span class="badge bg-info text-dark">Enhancement Record</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000932__PMJAY_PY_S_2025_R3_2026031010034987__INVESTIGAT</td>
+          <td><span class="badge bg-info text-dark">Lab Investigation</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000933__PMJAY_PY_S_2025_R3_2026031010034987__CASE_RECOR</td>
+          <td><span class="badge bg-info text-dark">Case Sheet</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000934__PMJAY_PY_S_2025_R3_2026031010034987__BEDSIDE_17</td>
+          <td><span class="badge bg-info text-dark">Bedside Chart</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000935__PMJAY_PY_S_2025_R3_2026031010034987__BEDSIDE_18</td>
+          <td><span class="badge bg-info text-dark">Bedside Chart</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000936__PMJAY_PY_S_2025_R3_2026031010034987__BEDSIDE_12</td>
+          <td><span class="badge bg-info text-dark">Bedside Chart</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000937__PMJAY_PY_S_2025_R3_2026031010034987__BEDSIDE_13</td>
+          <td><span class="badge bg-info text-dark">Bedside Chart</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000938__PMJAY_PY_S_2025_R3_2026031010034987__BEDSIDE_14</td>
+          <td><span class="badge bg-info text-dark">Bedside Chart</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000939__PMJAY_PY_S_2025_R3_2026031010034987__BEDSIDE_16</td>
+          <td><span class="badge bg-info text-dark">Bedside Chart</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000940__PMJAY_PY_S_2025_R3_2026031010034987__ALL_INVEST</td>
+          <td><span class="badge bg-info text-dark">Lab Investigation</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000941__PMJAY_PY_S_2025_R3_2026031010034987__DETAILED_D</td>
+          <td><span class="badge bg-info text-dark">Discharge Summary</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">General medical management requires minimum 2-day inpatient stay.</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000942__PMJAY_PY_S_2025_R3_2026031010034987__NURSES_REC</td>
+          <td><span class="badge bg-info text-dark">Nursing Notes</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000943__PMJAY_PY_S_2025_R3_2026031010034987__PROGRESS_R</td>
+          <td><span class="badge bg-info text-dark">Clinical Notes</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000944__PMJAY_PY_S_2025_R3_2026031010034987__BILL_SETTL</td>
+          <td><span class="badge bg-info text-dark">Bill Invoice</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000945__PMJAY_PY_S_2025_R3_2026031010034987__DISCHARGE_</td>
+          <td><span class="badge bg-info text-dark">Discharge Summary</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000946__PMJAY_PY_S_2025_R3_2026031010034987__POST_OP_PH</td>
+          <td><span class="badge bg-info text-dark">Operative Notes</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small"><span class="text-warning">⚠ Not required</span></td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_PY_S_2025_R3_202603</td>
+          <td>000947__PMJAY_PY_S_2025_R3_2026031010034987__FEEDBACK_F</td>
+          <td><span class="badge bg-info text-dark">Feedback Form</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr></tbody>
+      </table>
+    </div>
+
+    <!-- Tab 2: Rule Evaluation -->
+    <div class="tab-pane fade" id="tabRules">
+      <p class="text-muted small mt-2">STG rule evaluation for package <strong>MG006A</strong> — with evidence provenance.</p>
+      <table class="table table-sm table-hover table-bordered align-middle">
+        <thead><tr>
+          <th>Result</th><th>Rule ID</th><th>Rule Name</th><th>Conf</th><th>Reason / Message</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R001</strong></td>
+          <td>Discharge summary must be present</td>
+          <td>92.0%</td>
+          <td class="small">discharge_summary found.</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code> · Page 1 · Field <code>document_type</code> · Value <code>discharge_summary</code> · Conf 92.0% </li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-danger">🔴 Critical</span></td>
+          <td><strong>R002</strong></td>
+          <td>Pre-authorization form required</td>
+          <td>100.0%</td>
+          <td class="small">Pre-authorization/PMJAY eligibility form is mandatory.</td>
+        </tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R003</strong></td>
+          <td>Case sheet / clinical record required</td>
+          <td>92.0%</td>
+          <td class="small">case_sheet found.</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>000933__PMJAY_PY_S_2025_R3_2026031010034987__</code> · Page 1 · Field <code>document_type</code> · Value <code>case_sheet</code> · Conf 92.0% </li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-danger">🔴 Critical</span></td>
+          <td><strong>R004</strong></td>
+          <td>Identity document required</td>
+          <td>100.0%</td>
+          <td class="small">Beneficiary identity proof (Aadhar/PMJAY card) must be submi</td>
+        </tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R005</strong></td>
+          <td>Laboratory investigations documented</td>
+          <td>92.0%</td>
+          <td class="small">lab_investigation found.</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>000932__PMJAY_PY_S_2025_R3_2026031010034987__</code> · Page 1 · Field <code>document_type</code> · Value <code>lab_investigation</code> · Conf 92.0% </li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R006</strong></td>
+          <td>Admission date must precede discharge date</td>
+          <td>87.0%</td>
+          <td class="small">Admission 2026-03-10 ≤ Discharge 2026-03-10. Valid.</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code> · Page 1 · Field <code>admission_date</code> · Value <code>2026-03-10</code> · Conf 82.0% </li><li class="small text-muted">Doc: <code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code> · Page 1 · Field <code>discharge_date</code> · Value <code>2026-03-10</code> · Conf 82.0% </li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-warning text-dark">🟠 Major</span></td>
+          <td><strong>R007</strong></td>
+          <td>Minimum inpatient stay for medical management</td>
+          <td>90.0%</td>
+          <td class="small">General medical management requires minimum 2-day inpatient </td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code> · Page 1 · Field <code>admission_date</code> · Value <code>2026-03-10</code> · Conf 82.0% </li><li class="small text-muted">Doc: <code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code> · Page 1 · Field <code>discharge_date</code> · Value <code>2026-03-10</code> · Conf 82.0% </li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R008</strong></td>
+          <td>Hospital stamp on discharge summary</td>
+          <td>80.0%</td>
+          <td class="small">hospital_stamp detected.</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>000920__PMJAY_PY_S_2025_R3_2026031010034987__</code> · Page 3 · Field <code>hospital_stamp</code> · Value <code>detected</code> · Conf 80.5% BBox (197,1169)→(383,1243)</li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R009</strong></td>
+          <td>Doctor signature on discharge summary</td>
+          <td>80.0%</td>
+          <td class="small">doctor_signature detected.</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>000920__PMJAY_PY_S_2025_R3_2026031010034987__</code> · Page 1 · Field <code>doctor_signature</code> · Value <code>detected</code> · Conf 67.4% BBox (4,1947)→(105,1976)</li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R010</strong></td>
+          <td>Billed amount must not exceed package ceiling</td>
+          <td>78.0%</td>
+          <td class="small">Billed ₹0 ≤ ceiling ₹15,000.</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>PMJAY_PY_S_2025_R3_2026031010034987</code> · Page 0 · Field <code>billed_amount</code> · Value <code>0.3</code> · Conf 70.0% </li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-warning text-dark">🟠 Major</span></td>
+          <td><strong>R011</strong></td>
+          <td>Diagnosis consistent with medical management indication</td>
+          <td>65.0%</td>
+          <td class="small">Diagnosis must be consistent with general medical management</td>
+        </tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R012</strong></td>
+          <td>Patient name extractable from documents</td>
+          <td>85.0%</td>
+          <td class="small">Field 'patient_name' found: Admission No.</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code> · Page 2 · Field <code>patient_name</code> · Value <code>Admission No</code> · Conf 80.0% </li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R013</strong></td>
+          <td>Admission date documented</td>
+          <td>85.0%</td>
+          <td class="small">Field 'admission_date' found: 2026-03-10.</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code> · Page 1 · Field <code>admission_date</code> · Value <code>2026-03-10</code> · Conf 82.0% </li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R014</strong></td>
+          <td>Discharge date documented</td>
+          <td>85.0%</td>
+          <td class="small">Field 'discharge_date' found: 2026-03-10.</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code> · Page 1 · Field <code>discharge_date</code> · Value <code>2026-03-10</code> · Conf 82.0% </li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R015</strong></td>
+          <td>Diagnosis documented</td>
+          <td>85.0%</td>
+          <td class="small">Field 'diagnosis' found: ST Elevation Myocardial Infarction,</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code> · Page 3 · Field <code>diagnosis</code> · Value <code>ST Elevation Myocardial Infarction, 9 En</code> · Conf 65.0% </li></ul></td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- Tab 3: Timeline -->
+    <div class="tab-pane fade" id="tabTimeline">
+      <div class="mt-2"><div class="alert alert-success py-1 mb-2">✓ Timeline is temporally plausible</div></div>
+      <table class="table table-sm table-hover table-bordered align-middle">
+        <thead><tr>
+          <th>Seq</th><th>Event Type</th><th>Date</th><th>Source Document</th><th>Validity</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td>1</td>
+          <td>Admission</td>
+          <td>2026-03-10</td>
+          <td class="small">—</td>
+          <td class="text-success">Valid</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Discharge</td>
+          <td>2026-03-10</td>
+          <td class="small">—</td>
+          <td class="text-success">Valid</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Other</td>
+          <td>—</td>
+          <td class="small">—</td>
+          <td class="text-warning">Unknown</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Diagnostic Investigation</td>
+          <td>—</td>
+          <td class="small">—</td>
+          <td class="text-warning">Unknown</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Other</td>
+          <td>—</td>
+          <td class="small">—</td>
+          <td class="text-warning">Unknown</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Billing / Administrative</td>
+          <td>—</td>
+          <td class="small">—</td>
+          <td class="text-warning">Unknown</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Billing / Administrative</td>
+          <td>—</td>
+          <td class="small">—</td>
+          <td class="text-warning">Unknown</td>
+        </tr></tbody>
+      </table>
+    </div>
+
+    <!-- Tab 4: Visual Elements -->
+    <div class="tab-pane fade" id="tabVisual">
+      <p class="text-muted small mt-2">Stamps, signatures, barcodes detected via image analysis.</p>
+      <table class="table table-sm table-hover table-bordered align-middle">
+        <thead><tr>
+          <th>Element</th><th>Detected</th><th>Confidence</th>
+          <th>Document</th><th>Page</th><th>Decoded Value</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>67.4%</td>
+          <td class="small"><code>000920__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>69.7%</td>
+          <td class="small"><code>000920__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>80.5%</td>
+          <td class="small"><code>000920__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>70.5%</td>
+          <td class="small"><code>000920__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.0%</td>
+          <td class="small"><code>000921__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>85.6%</td>
+          <td class="small"><code>000921__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.3%</td>
+          <td class="small"><code>000921__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>71.1%</td>
+          <td class="small"><code>000921__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>75.2%</td>
+          <td class="small"><code>000921__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>4</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>68.6%</td>
+          <td class="small"><code>000921__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>4</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>75.0%</td>
+          <td class="small"><code>000921__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>5</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.0%</td>
+          <td class="small"><code>000921__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>5</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>77.6%</td>
+          <td class="small"><code>000921__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>6</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>76.5%</td>
+          <td class="small"><code>000921__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>6</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>70.0%</td>
+          <td class="small"><code>000921__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>7</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.2%</td>
+          <td class="small"><code>000921__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>8</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.1%</td>
+          <td class="small"><code>000921__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>9</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>85.6%</td>
+          <td class="small"><code>000922__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.0%</td>
+          <td class="small"><code>000922__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>86.4%</td>
+          <td class="small"><code>000922__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>60.9%</td>
+          <td class="small"><code>000922__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>74.6%</td>
+          <td class="small"><code>000922__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>60.3%</td>
+          <td class="small"><code>000922__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>85.3%</td>
+          <td class="small"><code>000922__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>4</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>60.5%</td>
+          <td class="small"><code>000922__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>4</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>83.9%</td>
+          <td class="small"><code>000923__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>60.7%</td>
+          <td class="small"><code>000923__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>75.0%</td>
+          <td class="small"><code>000924__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>60.6%</td>
+          <td class="small"><code>000924__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>85.6%</td>
+          <td class="small"><code>000924__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>60.6%</td>
+          <td class="small"><code>000924__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>76.9%</td>
+          <td class="small"><code>000925__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.0%</td>
+          <td class="small"><code>000925__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>86.0%</td>
+          <td class="small"><code>000925__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.0%</td>
+          <td class="small"><code>000925__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>85.6%</td>
+          <td class="small"><code>000925__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.1%</td>
+          <td class="small"><code>000925__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>67.1%</td>
+          <td class="small"><code>000926__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.3%</td>
+          <td class="small"><code>000926__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>79.5%</td>
+          <td class="small"><code>000926__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>62.2%</td>
+          <td class="small"><code>000926__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.0%</td>
+          <td class="small"><code>000927__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>84.7%</td>
+          <td class="small"><code>000927__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.3%</td>
+          <td class="small"><code>000927__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>71.1%</td>
+          <td class="small"><code>000927__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>76.2%</td>
+          <td class="small"><code>000927__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>4</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>68.2%</td>
+          <td class="small"><code>000927__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>4</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>74.1%</td>
+          <td class="small"><code>000927__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>5</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.0%</td>
+          <td class="small"><code>000927__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>5</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>79.9%</td>
+          <td class="small"><code>000927__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>6</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>76.5%</td>
+          <td class="small"><code>000927__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>6</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>70.0%</td>
+          <td class="small"><code>000927__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>7</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.2%</td>
+          <td class="small"><code>000927__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>8</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.1%</td>
+          <td class="small"><code>000927__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>9</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>84.3%</td>
+          <td class="small"><code>000928__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.0%</td>
+          <td class="small"><code>000928__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>79.6%</td>
+          <td class="small"><code>000928__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>60.9%</td>
+          <td class="small"><code>000928__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>82.6%</td>
+          <td class="small"><code>000928__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>60.3%</td>
+          <td class="small"><code>000928__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>75.9%</td>
+          <td class="small"><code>000928__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>4</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>60.5%</td>
+          <td class="small"><code>000928__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>4</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>83.3%</td>
+          <td class="small"><code>000929__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>60.7%</td>
+          <td class="small"><code>000929__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>82.3%</td>
+          <td class="small"><code>000930__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>60.6%</td>
+          <td class="small"><code>000930__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>86.4%</td>
+          <td class="small"><code>000930__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>60.6%</td>
+          <td class="small"><code>000930__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>74.6%</td>
+          <td class="small"><code>000931__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.0%</td>
+          <td class="small"><code>000931__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>86.4%</td>
+          <td class="small"><code>000931__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.0%</td>
+          <td class="small"><code>000931__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>86.4%</td>
+          <td class="small"><code>000931__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.1%</td>
+          <td class="small"><code>000931__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>79.0%</td>
+          <td class="small"><code>000932__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.2%</td>
+          <td class="small"><code>000932__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>74.4%</td>
+          <td class="small"><code>000932__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.2%</td>
+          <td class="small"><code>000932__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.2%</td>
+          <td class="small"><code>000932__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>4</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.2%</td>
+          <td class="small"><code>000932__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>5</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.2%</td>
+          <td class="small"><code>000932__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>6</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.2%</td>
+          <td class="small"><code>000932__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>7</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000933__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000933__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000933__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000933__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>4</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000938__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000939__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>76.6%</td>
+          <td class="small"><code>000940__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.9%</td>
+          <td class="small"><code>000940__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.1%</td>
+          <td class="small"><code>000940__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.1%</td>
+          <td class="small"><code>000940__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.1%</td>
+          <td class="small"><code>000940__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>4</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.1%</td>
+          <td class="small"><code>000940__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>5</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>78.3%</td>
+          <td class="small"><code>000940__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>6</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>79.0%</td>
+          <td class="small"><code>000940__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>6</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.1%</td>
+          <td class="small"><code>000940__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>7</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>73.5%</td>
+          <td class="small"><code>000940__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>8</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.2%</td>
+          <td class="small"><code>000940__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>8</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.2%</td>
+          <td class="small"><code>000940__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>9</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.1%</td>
+          <td class="small"><code>000940__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>10</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.1%</td>
+          <td class="small"><code>000940__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>11</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.2%</td>
+          <td class="small"><code>000940__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>12</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.2%</td>
+          <td class="small"><code>000940__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>13</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.2%</td>
+          <td class="small"><code>000940__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>14</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>79.9%</td>
+          <td class="small"><code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>79.1%</td>
+          <td class="small"><code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>77.4%</td>
+          <td class="small"><code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>4</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.9%</td>
+          <td class="small"><code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>5</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>80.0%</td>
+          <td class="small"><code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>6</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>74.0%</td>
+          <td class="small"><code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>7</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>75.9%</td>
+          <td class="small"><code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>8</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>9</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>76.0%</td>
+          <td class="small"><code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>9</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>74.0%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>79.7%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>62.5%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>4</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>74.7%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>5</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>5</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>81.8%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>6</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>6</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>80.0%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>7</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>85.5%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>8</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.6%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>8</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>9</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>76.8%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>10</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>62.1%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>10</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>82.1%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>11</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>11</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>76.2%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>12</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>12</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>62.3%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>13</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>76.2%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>14</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>62.1%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>14</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>79.4%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>15</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>68.3%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>15</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>74.5%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>16</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000942__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>16</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.0%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>82.8%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>78.3%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>69.1%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>4</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>83.9%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>5</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>68.3%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>5</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>6</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>74.2%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>7</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>83.1%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>7</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>75.1%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>8</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>8</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>86.2%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>9</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>9</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>84.9%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>10</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>10</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>85.1%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>11</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>11</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>86.4%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>12</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>12</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>85.1%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>13</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>13</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>86.3%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>14</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>14</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>75.5%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>15</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>15</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>73.3%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>16</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>76.7%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>16</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>86.3%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>17</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.1%</td>
+          <td class="small"><code>000943__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>17</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>75.6%</td>
+          <td class="small"><code>000944__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>65.0%</td>
+          <td class="small"><code>000944__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000945__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>80.0%</td>
+          <td class="small"><code>000945__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>79.6%</td>
+          <td class="small"><code>000945__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>77.4%</td>
+          <td class="small"><code>000945__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>4</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.2%</td>
+          <td class="small"><code>000945__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>5</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>79.9%</td>
+          <td class="small"><code>000945__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>6</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>73.4%</td>
+          <td class="small"><code>000945__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>7</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>76.4%</td>
+          <td class="small"><code>000945__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>8</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>80.2%</td>
+          <td class="small"><code>000945__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>9</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>76.6%</td>
+          <td class="small"><code>000945__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>9</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000947__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>86.3%</td>
+          <td class="small"><code>000947__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>65.3%</td>
+          <td class="small"><code>000947__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr></tbody>
+      </table>
+    </div>
+
+    <!-- Tab 5: Provenance -->
+    <div class="tab-pane fade" id="tabProv">
+      <p class="text-muted small mt-2">Every extracted value traced to source document, page and bounding box.</p>
+      <table class="table table-sm table-hover table-bordered align-middle">
+        <thead><tr>
+          <th>Field</th><th>Value</th><th>Document</th><th>Page</th><th>Confidence</th><th>Bounding Box</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td><code>admission_date</code></td>
+          <td><code>2026-03-10</code></td>
+          <td class="small"><code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>82.0%</td>
+          <td class="small font-monospace">—</td>
+        </tr>
+        <tr>
+          <td><code>discharge_date</code></td>
+          <td><code>2026-03-10</code></td>
+          <td class="small"><code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>82.0%</td>
+          <td class="small font-monospace">—</td>
+        </tr>
+        <tr>
+          <td><code>patient_name</code></td>
+          <td><code>Admission No</code></td>
+          <td class="small"><code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>2</td>
+          <td>80.0%</td>
+          <td class="small font-monospace">—</td>
+        </tr>
+        <tr>
+          <td><code>diagnosis</code></td>
+          <td><code>ST Elevation Myocardial Infarction</code></td>
+          <td class="small"><code>000941__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>65.0%</td>
+          <td class="small font-monospace">—</td>
+        </tr>
+        <tr>
+          <td><code>diagnosis</code></td>
+          <td><code>9 Entorc Fen.</code></td>
+          <td class="small"><code>000933__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>72.0%</td>
+          <td class="small font-monospace">—</td>
+        </tr>
+        <tr>
+          <td><code>diagnosis</code></td>
+          <td><code>VESTIGATIONS</code></td>
+          <td class="small"><code>000933__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>3</td>
+          <td>72.0%</td>
+          <td class="small font-monospace">—</td>
+        </tr>
+        <tr>
+          <td><code>diagnosis</code></td>
+          <td><code>F61</code></td>
+          <td class="small"><code>000924__PMJAY_PY_S_2025_R3_2026031010034987__</code></td>
+          <td>1</td>
+          <td>72.0%</td>
+          <td class="small font-monospace">—</td>
+        </tr></tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <p class="text-muted small text-center">
+    NHA PMJAY Automated Claims Processing System · Problem Statement 01 · 2026
+  </p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

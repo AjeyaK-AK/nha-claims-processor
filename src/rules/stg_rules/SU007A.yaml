@@ -45,7 +45,7 @@ rules:
     name: "Pre-authorization form present"
     type: document_presence
     required_doc: preauthorization_form
-    severity: critical
+    severity: major
     message: "Pre-authorization is mandatory."
 
   - id: R003
@@ -129,3 +129,31 @@ rules:
                "kidney stone", "ureteric"]
     severity: major
     message: "Diagnosis must confirm renal / ureteric calculus or obstructive uropathy."
+
+  - id: R014
+    name: "Patient name extractable from documents"
+    type: field_not_blank
+    field: patient_name
+    severity: minor
+    message: "Patient name could not be extracted from submitted documents."
+
+  - id: R015
+    name: "Admission date documented"
+    type: field_not_blank
+    field: admission_date
+    severity: major
+    message: "Admission date must be clearly documented in submitted records."
+
+  - id: R016
+    name: "Discharge date documented"
+    type: field_not_blank
+    field: discharge_date
+    severity: major
+    message: "Discharge date must be clearly documented in submitted records."
+
+  - id: R017
+    name: "Diagnosis documented"
+    type: field_not_blank
+    field: diagnosis
+    severity: major
+    message: "Diagnosis must be documented in submitted records."

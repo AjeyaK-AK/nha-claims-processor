@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  claims-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pmjay-claims-api:latest
+    container_name: pmjay-claims-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      # Tesseract is pre-installed in the image
+      TESSERACT_CMD: tesseract
+      # Set to "1" to enable EasyOCR fallback (slower, downloads ~1 GB model on first run)
+      USE_EASYOCR: "0"
+      # Workers: increase for higher throughput
+      UVICORN_WORKERS: "2"
+    volumes:
+      # Persist generated reports across container restarts
+      - ./output_reports:/app/output_reports
+      # Persist in-flight job files
+      - ./api_job_store:/app/_api_jobs
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    command: >
+      python -m uvicorn api:app
+      --host 0.0.0.0
+      --port 8000
+      --workers 2
+      --timeout-keep-alive 120

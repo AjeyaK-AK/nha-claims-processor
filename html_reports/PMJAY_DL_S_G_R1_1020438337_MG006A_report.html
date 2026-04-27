@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NHA PMJAY Claim Report – PMJAY_DL_S_G_R1_1020438337</title>
+<link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<style>
+  body { font-family: 'Segoe UI', sans-serif; background:#f8f9fa; }
+  .verdict-banner { border-radius:12px; padding:20px 30px; margin-bottom:24px; }
+  .metric-card { background:#fff; border-radius:8px; padding:14px 18px;
+                  border:1px solid #dee2e6; text-align:center; }
+  .metric-card .value { font-size:1.4rem; font-weight:700; }
+  .metric-card .label { font-size:0.8rem; color:#6c757d; }
+  nav.navbar { background:#00448a !important; }
+  .table th { background:#f1f3f5; }
+  pre { background:#f8f9fa; border-radius:6px; padding:8px; font-size:0.8rem; }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark px-4 py-2">
+  <span class="navbar-brand fw-bold">🏥 NHA PMJAY Automated Claims Processor</span>
+  <span class="text-white-50 small">Problem Statement 01 · 2026</span>
+</nav>
+
+<div class="container-fluid py-4">
+
+  <!-- Verdict Banner -->
+  <div class="verdict-banner" style="background:#f8d7da; border:2px solid #dc3545">
+    <div class="d-flex align-items-center gap-4">
+      <h2 style="color:#dc3545;margin:0;font-size:2rem">
+        ❌
+        &nbsp;FAIL
+      </h2>
+      <div>
+        <div class="text-muted small">Claim ID</div>
+        <strong>PMJAY_DL_S_G_R1_1020438337</strong>
+      </div>
+      <div>
+        <div class="text-muted small">Package</div>
+        <strong>MG006A</strong>
+      </div>
+      <div>
+        <div class="text-muted small">Compliance Score</div>
+        <strong style="color:#dc3545">77.5%</strong>
+      </div>
+      <div>
+        <div class="text-muted small">Confidence</div>
+        <strong>84.5%</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Patient Strip -->
+  <div class="row g-3 mb-4">
+    <div class="col"><div class="metric-card">
+      <div class="value">per deciliser</div>
+      <div class="label">Patient</div>
+    </div></div>
+    <div class="col"><div class="metric-card">
+      <div class="value">2026-01-22</div>
+      <div class="label">Admission</div>
+    </div></div>
+    <div class="col"><div class="metric-card">
+      <div class="value">2026-01-22</div>
+      <div class="label">Discharge</div>
+    </div></div>
+    <div class="col"><div class="metric-card">
+      <div class="value">—</div>
+      <div class="label">Length of Stay (days)</div>
+    </div></div>
+    <div class="col-4"><div class="metric-card">
+      <div class="value" style="font-size:1rem">- ACC HTN / Enteric fever / AGE / UTI / LRTI, ST Elevation Myocardial </div>
+      <div class="label">Diagnosis</div>
+    </div></div>
+  </div>
+
+  <!-- Rule Summary Pills -->
+  <div class="d-flex gap-3 mb-4">
+    <span class="badge bg-success fs-6 px-3 py-2">✅ 12 Passed</span>
+    <span class="badge bg-danger fs-6 px-3 py-2">🔴 1 Critical</span>
+    <span class="badge bg-warning text-dark fs-6 px-3 py-2">🟠 2 Major</span>
+    <span class="badge bg-secondary fs-6 px-3 py-2">🟡 0 Minor</span>
+  </div>
+
+  <!-- Tabs -->
+  <ul class="nav nav-tabs mb-0" id="mainTabs">
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tabDocs">📄 Document Classification</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabRules">📋 Rule Evaluation</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabTimeline">🕐 Episode Timeline</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabVisual">👁 Visual Elements</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabProv">🔍 Provenance</button></li>
+  </ul>
+
+  <div class="tab-content border border-top-0 rounded-bottom bg-white p-3 mb-4">
+
+    <!-- Tab 1: Document Classification -->
+    <div class="tab-pane fade show active" id="tabDocs">
+      <p class="text-muted small mt-2">Each document classified. Extra/non-required documents flagged.</p>
+      <table class="table table-sm table-hover table-bordered align-middle">
+        <thead><tr>
+          <th>Claim ID</th><th>Document</th><th>Type Detected</th>
+          <th>Confidence</th><th>Signal</th><th>Issues / Flags</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td class="text-muted small">PMJAY_DL_S_G_R1_102043833</td>
+          <td>000609__PMJAY_DL_S_G_R1_1020438337__Pt_avtar_singh_24th</td>
+          <td><span class="badge bg-info text-dark">Discharge Summary</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_DL_S_G_R1_102043833</td>
+          <td>000611__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_singh_bloo</td>
+          <td><span class="badge bg-info text-dark">Lab Investigation</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_DL_S_G_R1_102043833</td>
+          <td>000612__PMJAY_DL_S_G_R1_1020438337__PT_AVTAR_FEVER_PROF</td>
+          <td><span class="badge bg-info text-dark">Clinical Notes</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_DL_S_G_R1_102043833</td>
+          <td>000613__PMJAY_DL_S_G_R1_1020438337__PT_AVTAR_URINE_RE.p</td>
+          <td><span class="badge bg-info text-dark">Lab Investigation</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_DL_S_G_R1_102043833</td>
+          <td>000614__PMJAY_DL_S_G_R1_1020438337__23rd_Jan_Doc_Notes_</td>
+          <td><span class="badge bg-info text-dark">Clinical Notes</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_DL_S_G_R1_102043833</td>
+          <td>000615__PMJAY_DL_S_G_R1_1020438337__Pt_avtar_singh_ER_n</td>
+          <td><span class="badge bg-info text-dark">Discharge Summary</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_DL_S_G_R1_102043833</td>
+          <td>000616__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_Singh_ECG_</td>
+          <td><span class="badge bg-info text-dark">Discharge Summary</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_DL_S_G_R1_102043833</td>
+          <td>000618__PMJAY_DL_S_G_R1_1020438337__Pt_avtar_singh_28th</td>
+          <td><span class="badge bg-info text-dark">Discharge Summary</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_DL_S_G_R1_102043833</td>
+          <td>000620__PMJAY_DL_S_G_R1_1020438337__Pt_avtar_singh_27th</td>
+          <td><span class="badge bg-info text-dark">Discharge Summary</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_DL_S_G_R1_102043833</td>
+          <td>000621__PMJAY_DL_S_G_R1_1020438337__PT_AVTAR_SINGH_WIDA</td>
+          <td><span class="badge bg-info text-dark">Discharge Summary</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_DL_S_G_R1_102043833</td>
+          <td>000623__PMJAY_DL_S_G_R1_1020438337__Pt_avtar_singh_26th</td>
+          <td><span class="badge bg-info text-dark">Discharge Summary</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_DL_S_G_R1_102043833</td>
+          <td>000625__PMJAY_DL_S_G_R1_1020438337__Pt_avtar_singh_25th</td>
+          <td><span class="badge bg-info text-dark">Discharge Summary</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_DL_S_G_R1_102043833</td>
+          <td>000626__PMJAY_DL_S_G_R1_1020438337__avtar_singh_negi_ad</td>
+          <td><span class="badge bg-info text-dark">Admission Form</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_DL_S_G_R1_102043833</td>
+          <td>000627__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_Singh_disc</td>
+          <td><span class="badge bg-info text-dark">Discharge Summary</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_DL_S_G_R1_102043833</td>
+          <td>000629__PMJAY_DL_S_G_R1_1020438337__PT_AVTAR_SINGH_NEGI</td>
+          <td><span class="badge bg-info text-dark">Feedback Form</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr>
+        <tr>
+          <td class="text-muted small">PMJAY_DL_S_G_R1_102043833</td>
+          <td>000630__PMJAY_DL_S_G_R1_1020438337__avtar_singh_dischar</td>
+          <td><span class="badge bg-info text-dark">Discharge Summary</span></td>
+          <td>92.0%</td>
+          <td><span class="badge bg-secondary">filename</span></td>
+          <td class="small">—</td>
+        </tr></tbody>
+      </table>
+    </div>
+
+    <!-- Tab 2: Rule Evaluation -->
+    <div class="tab-pane fade" id="tabRules">
+      <p class="text-muted small mt-2">STG rule evaluation for package <strong>MG006A</strong> — with evidence provenance.</p>
+      <table class="table table-sm table-hover table-bordered align-middle">
+        <thead><tr>
+          <th>Result</th><th>Rule ID</th><th>Rule Name</th><th>Conf</th><th>Reason / Message</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R001</strong></td>
+          <td>Discharge summary must be present</td>
+          <td>92.0%</td>
+          <td class="small">discharge_summary found.</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>000609__PMJAY_DL_S_G_R1_1020438337__Pt_avtar_</code> · Page 1 · Field <code>document_type</code> · Value <code>discharge_summary</code> · Conf 92.0% </li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-warning text-dark">🟠 Major</span></td>
+          <td><strong>R002</strong></td>
+          <td>Pre-authorization form required</td>
+          <td>100.0%</td>
+          <td class="small">Pre-authorization/PMJAY eligibility form is mandatory.</td>
+        </tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R003</strong></td>
+          <td>Case sheet / clinical record required</td>
+          <td>92.0%</td>
+          <td class="small">clinical_notes found.</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>000612__PMJAY_DL_S_G_R1_1020438337__PT_AVTAR_</code> · Page 1 · Field <code>document_type</code> · Value <code>clinical_notes</code> · Conf 92.0% </li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-danger">🔴 Critical</span></td>
+          <td><strong>R004</strong></td>
+          <td>Identity document required</td>
+          <td>100.0%</td>
+          <td class="small">Beneficiary identity proof (Aadhar/PMJAY card) must be submi</td>
+        </tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R005</strong></td>
+          <td>Laboratory investigations documented</td>
+          <td>92.0%</td>
+          <td class="small">lab_investigation found.</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>000611__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code> · Page 1 · Field <code>document_type</code> · Value <code>lab_investigation</code> · Conf 92.0% </li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R006</strong></td>
+          <td>Admission date must precede discharge date</td>
+          <td>87.0%</td>
+          <td class="small">Admission 2026-01-22 ≤ Discharge 2026-01-22. Valid.</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>PMJAY_DL_S_G_R1_1020438337</code> · Page 0 · Field <code>admission_date</code> · Value <code>2026-01-22</code> · Conf 82.0% </li><li class="small text-muted">Doc: <code>PMJAY_DL_S_G_R1_1020438337</code> · Page 0 · Field <code>discharge_date</code> · Value <code>2026-01-22</code> · Conf 82.0% </li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-warning text-dark">🟠 Major</span></td>
+          <td><strong>R007</strong></td>
+          <td>Minimum inpatient stay for medical management</td>
+          <td>90.0%</td>
+          <td class="small">General medical management requires minimum 2-day inpatient </td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>PMJAY_DL_S_G_R1_1020438337</code> · Page 0 · Field <code>admission_date</code> · Value <code>2026-01-22</code> · Conf 82.0% </li><li class="small text-muted">Doc: <code>PMJAY_DL_S_G_R1_1020438337</code> · Page 0 · Field <code>discharge_date</code> · Value <code>2026-01-22</code> · Conf 82.0% </li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R008</strong></td>
+          <td>Hospital stamp on discharge summary</td>
+          <td>80.0%</td>
+          <td class="small">hospital_stamp detected.</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>000616__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code> · Page 3 · Field <code>hospital_stamp</code> · Value <code>detected</code> · Conf 74.4% </li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R009</strong></td>
+          <td>Doctor signature on discharge summary</td>
+          <td>80.0%</td>
+          <td class="small">doctor_signature detected.</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>000609__PMJAY_DL_S_G_R1_1020438337__Pt_avtar_</code> · Page 1 · Field <code>doctor_signature</code> · Value <code>detected</code> · Conf 85.0% </li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R010</strong></td>
+          <td>Billed amount must not exceed package ceiling</td>
+          <td>40.0%</td>
+          <td class="small">Billed amount not found; cannot verify ceiling.</td>
+        </tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R011</strong></td>
+          <td>Diagnosis consistent with medical management indication</td>
+          <td>75.0%</td>
+          <td class="small">Diagnosis keyword match: ['fever'].</td>
+        </tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R012</strong></td>
+          <td>Patient name extractable from documents</td>
+          <td>85.0%</td>
+          <td class="small">Field 'patient_name' found: per deciliser.</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>PMJAY_DL_S_G_R1_1020438337</code> · Page 0 · Field <code>patient_name</code> · Value <code>per deciliser</code> · Conf 70.0% </li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R013</strong></td>
+          <td>Admission date documented</td>
+          <td>85.0%</td>
+          <td class="small">Field 'admission_date' found: 2026-01-22.</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>PMJAY_DL_S_G_R1_1020438337</code> · Page 0 · Field <code>admission_date</code> · Value <code>2026-01-22</code> · Conf 70.0% </li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R014</strong></td>
+          <td>Discharge date documented</td>
+          <td>85.0%</td>
+          <td class="small">Field 'discharge_date' found: 2026-01-22.</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>PMJAY_DL_S_G_R1_1020438337</code> · Page 0 · Field <code>discharge_date</code> · Value <code>2026-01-22</code> · Conf 70.0% </li></ul></td></tr>
+        <tr>
+          <td><span class="badge bg-success">✅ PASS</span></td>
+          <td><strong>R015</strong></td>
+          <td>Diagnosis documented</td>
+          <td>85.0%</td>
+          <td class="small">Field 'diagnosis' found: - ACC HTN / Enteric fever / AGE / U</td>
+        </tr><tr class="table-light"><td colspan="5"><ul class="mb-0 ps-3"><li class="small text-muted">Doc: <code>PMJAY_DL_S_G_R1_1020438337</code> · Page 0 · Field <code>diagnosis</code> · Value <code>- ACC HTN / Enteric fever / AGE / UTI / </code> · Conf 70.0% </li></ul></td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- Tab 3: Timeline -->
+    <div class="tab-pane fade" id="tabTimeline">
+      <div class="mt-2"><div class="alert alert-success py-1 mb-2">✓ Timeline is temporally plausible</div></div>
+      <table class="table table-sm table-hover table-bordered align-middle">
+        <thead><tr>
+          <th>Seq</th><th>Event Type</th><th>Date</th><th>Source Document</th><th>Validity</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td>1</td>
+          <td>Admission</td>
+          <td>2026-01-22</td>
+          <td class="small">—</td>
+          <td class="text-success">Valid</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Discharge</td>
+          <td>2026-01-22</td>
+          <td class="small">—</td>
+          <td class="text-success">Valid</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Diagnostic Investigation</td>
+          <td>—</td>
+          <td class="small">—</td>
+          <td class="text-warning">Unknown</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Billing / Administrative</td>
+          <td>—</td>
+          <td class="small">—</td>
+          <td class="text-warning">Unknown</td>
+        </tr></tbody>
+      </table>
+    </div>
+
+    <!-- Tab 4: Visual Elements -->
+    <div class="tab-pane fade" id="tabVisual">
+      <p class="text-muted small mt-2">Stamps, signatures, barcodes detected via image analysis.</p>
+      <table class="table table-sm table-hover table-bordered align-middle">
+        <thead><tr>
+          <th>Element</th><th>Detected</th><th>Confidence</th>
+          <th>Document</th><th>Page</th><th>Decoded Value</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000609__PMJAY_DL_S_G_R1_1020438337__Pt_avtar_</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>76.0%</td>
+          <td class="small"><code>000609__PMJAY_DL_S_G_R1_1020438337__Pt_avtar_</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>75.4%</td>
+          <td class="small"><code>000611__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000611__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>78.1%</td>
+          <td class="small"><code>000611__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>74.9%</td>
+          <td class="small"><code>000611__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code></td>
+          <td>4</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>76.9%</td>
+          <td class="small"><code>000611__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code></td>
+          <td>5</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>76.8%</td>
+          <td class="small"><code>000611__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code></td>
+          <td>6</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>75.4%</td>
+          <td class="small"><code>000611__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code></td>
+          <td>7</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000612__PMJAY_DL_S_G_R1_1020438337__PT_AVTAR_</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000612__PMJAY_DL_S_G_R1_1020438337__PT_AVTAR_</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000612__PMJAY_DL_S_G_R1_1020438337__PT_AVTAR_</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000612__PMJAY_DL_S_G_R1_1020438337__PT_AVTAR_</code></td>
+          <td>4</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000613__PMJAY_DL_S_G_R1_1020438337__PT_AVTAR_</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>60.3%</td>
+          <td class="small"><code>000614__PMJAY_DL_S_G_R1_1020438337__23rd_Jan_</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>71.8%</td>
+          <td class="small"><code>000614__PMJAY_DL_S_G_R1_1020438337__23rd_Jan_</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000615__PMJAY_DL_S_G_R1_1020438337__Pt_avtar_</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000616__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000616__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Hospital Stamp</td>
+          <td>✅ Yes</td>
+          <td>74.4%</td>
+          <td class="small"><code>000616__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>61.7%</td>
+          <td class="small"><code>000616__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code></td>
+          <td>3</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>80.0%</td>
+          <td class="small"><code>000618__PMJAY_DL_S_G_R1_1020438337__Pt_avtar_</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>65.2%</td>
+          <td class="small"><code>000618__PMJAY_DL_S_G_R1_1020438337__Pt_avtar_</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000620__PMJAY_DL_S_G_R1_1020438337__Pt_avtar_</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>64.2%</td>
+          <td class="small"><code>000620__PMJAY_DL_S_G_R1_1020438337__Pt_avtar_</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000621__PMJAY_DL_S_G_R1_1020438337__PT_AVTAR_</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000623__PMJAY_DL_S_G_R1_1020438337__Pt_avtar_</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>74.5%</td>
+          <td class="small"><code>000623__PMJAY_DL_S_G_R1_1020438337__Pt_avtar_</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>69.8%</td>
+          <td class="small"><code>000625__PMJAY_DL_S_G_R1_1020438337__Pt_avtar_</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000625__PMJAY_DL_S_G_R1_1020438337__Pt_avtar_</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>65.3%</td>
+          <td class="small"><code>000626__PMJAY_DL_S_G_R1_1020438337__avtar_sin</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>85.0%</td>
+          <td class="small"><code>000627__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>70.5%</td>
+          <td class="small"><code>000627__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code></td>
+          <td>2</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>65.6%</td>
+          <td class="small"><code>000629__PMJAY_DL_S_G_R1_1020438337__PT_AVTAR_</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Doctor Signature</td>
+          <td>✅ Yes</td>
+          <td>69.0%</td>
+          <td class="small"><code>000630__PMJAY_DL_S_G_R1_1020438337__avtar_sin</code></td>
+          <td>1</td>
+          <td>—</td>
+        </tr></tbody>
+      </table>
+    </div>
+
+    <!-- Tab 5: Provenance -->
+    <div class="tab-pane fade" id="tabProv">
+      <p class="text-muted small mt-2">Every extracted value traced to source document, page and bounding box.</p>
+      <table class="table table-sm table-hover table-bordered align-middle">
+        <thead><tr>
+          <th>Field</th><th>Value</th><th>Document</th><th>Page</th><th>Confidence</th><th>Bounding Box</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td><code>admission_date</code></td>
+          <td><code>2026-01-22</code></td>
+          <td class="small"><code>000627__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code></td>
+          <td>1</td>
+          <td>82.0%</td>
+          <td class="small font-monospace">—</td>
+        </tr>
+        <tr>
+          <td><code>discharge_date</code></td>
+          <td><code>2026-01-22</code></td>
+          <td class="small"><code>000627__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code></td>
+          <td>1</td>
+          <td>82.0%</td>
+          <td class="small font-monospace">—</td>
+        </tr>
+        <tr>
+          <td><code>diagnosis</code></td>
+          <td><code>- ACC HTN / Enteric fever / AGE / UTI / LRTI</code></td>
+          <td class="small"><code>000627__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code></td>
+          <td>1</td>
+          <td>72.0%</td>
+          <td class="small font-monospace">—</td>
+        </tr>
+        <tr>
+          <td><code>diagnosis</code></td>
+          <td><code>ST Elevation Myocardial Infarction</code></td>
+          <td class="small"><code>000611__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code></td>
+          <td>1</td>
+          <td>65.0%</td>
+          <td class="small font-monospace">—</td>
+        </tr>
+        <tr>
+          <td><code>patient_name</code></td>
+          <td><code>per deciliser</code></td>
+          <td class="small"><code>000611__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code></td>
+          <td>3</td>
+          <td>80.0%</td>
+          <td class="small font-monospace">—</td>
+        </tr>
+        <tr>
+          <td><code>patient_id</code></td>
+          <td><code>1767</code></td>
+          <td class="small"><code>000612__PMJAY_DL_S_G_R1_1020438337__PT_AVTAR_</code></td>
+          <td>1</td>
+          <td>85.0%</td>
+          <td class="small font-monospace">—</td>
+        </tr>
+        <tr>
+          <td><code>diagnosis</code></td>
+          <td><code>Coronary Artery Disease</code></td>
+          <td class="small"><code>000616__PMJAY_DL_S_G_R1_1020438337__Pt_Avtar_</code></td>
+          <td>3</td>
+          <td>65.0%</td>
+          <td class="small font-monospace">—</td>
+        </tr></tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <p class="text-muted small text-center">
+    NHA PMJAY Automated Claims Processing System · Problem Statement 01 · 2026
+  </p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

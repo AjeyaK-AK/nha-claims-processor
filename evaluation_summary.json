@@ -1,0 +1,63 @@
+{
+  "evaluation_date": "2026-04-25T19:57:20.490509",
+  "total_claims": 32,
+  "verdict_distribution": {
+    "PASS": 1,
+    "CONDITIONAL": 2,
+    "FAIL": 29
+  },
+  "percentages": {
+    "pass_pct": 3.1,
+    "conditional_pct": 6.2,
+    "fail_pct": 90.6
+  },
+  "averages": {
+    "score": 0.4765,
+    "confidence": 0.8158,
+    "critical_failures": 2.53,
+    "major_failures": 5.62,
+    "minor_failures": 0.25
+  },
+  "package_breakdown": {
+    "MC011A": {
+      "total": 1,
+      "pass": 0,
+      "conditional": 0,
+      "fail": 1,
+      "avg_score": 0.4318,
+      "avg_confidence": 0.7443
+    },
+    "MG006A": {
+      "total": 9,
+      "pass": 1,
+      "conditional": 1,
+      "fail": 7,
+      "avg_score": 0.6031888888888889,
+      "avg_confidence": 0.8208222222222223
+    },
+    "MG064A": {
+      "total": 6,
+      "pass": 0,
+      "conditional": 1,
+      "fail": 5,
+      "avg_score": 0.4969666666666666,
+      "avg_confidence": 0.8164666666666668
+    },
+    "SB039A": {
+      "total": 10,
+      "pass": 0,
+      "conditional": 0,
+      "fail": 10,
+      "avg_score": 0.37812999999999997,
+      "avg_confidence": 0.82649
+    },
+    "SG039C": {
+      "total": 6,
+      "pass": 0,
+      "conditional": 0,
+      "fail": 6,
+      "avg_score": 0.4374833333333334,
+      "avg_confidence": 0.8018
+    }
+  }
+}

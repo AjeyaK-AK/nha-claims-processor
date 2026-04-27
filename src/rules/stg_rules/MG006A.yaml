@@ -42,13 +42,14 @@ rules:
     name: "Pre-authorization form required"
     type: document_presence
     required_doc: preauthorization_form
-    severity: critical
+    severity: major
     message: "Pre-authorization/PMJAY eligibility form is mandatory."
 
   - id: R003
     name: "Case sheet / clinical record required"
     type: document_presence
     required_doc: case_sheet
+    alternatives: [clinical_notes]
     severity: critical
     message: "Case sheet documenting patient history, examination and daily progress is mandatory."
 
@@ -112,3 +113,31 @@ rules:
                "diarrhoea", "anemia", "diabetes", "hypertension", "cellulitis"]
     severity: major
     message: "Diagnosis must be consistent with general medical management indication."
+
+  - id: R012
+    name: "Patient name extractable from documents"
+    type: field_not_blank
+    field: patient_name
+    severity: minor
+    message: "Patient name could not be extracted from submitted documents."
+
+  - id: R013
+    name: "Admission date documented"
+    type: field_not_blank
+    field: admission_date
+    severity: major
+    message: "Admission date must be clearly documented in submitted records."
+
+  - id: R014
+    name: "Discharge date documented"
+    type: field_not_blank
+    field: discharge_date
+    severity: major
+    message: "Discharge date must be clearly documented in submitted records."
+
+  - id: R015
+    name: "Diagnosis documented"
+    type: field_not_blank
+    field: diagnosis
+    severity: major
+    message: "A clinical diagnosis must be extractable from the submitted documents."

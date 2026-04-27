@@ -39,7 +39,7 @@ RESULT_BADGE = {
 }
 
 def discover_claims():
-    """Return dict  {display_label: (claim_dir_or_None, package_code)}"""
+    """Return dict  {display_label: (claim_dir_or_None, package_code, claim_id)}"""
     claims = {}
 
     # Live data mode
@@ -52,8 +52,8 @@ def discover_claims():
             for claim_dir in sorted(pkg_dir.iterdir()):
                 if not claim_dir.is_dir() or claim_dir.name.startswith("."):
                     continue
-                label = f"{pkg_dir.name} / {claim_dir.name}"
-                claims[label] = (claim_dir, pkg_dir.name)
+                label = claim_dir.name
+                claims[label] = (claim_dir, pkg_dir.name, claim_dir.name)
 
     # Demo mode: load from pre-computed report filenames
     if not claims:
@@ -62,9 +62,9 @@ def discover_claims():
             stem = rfile.stem  # e.g. CMJAY_..._SB039A_report
             parts = stem.replace("_report", "").rsplit("_", 1)
             if len(parts) == 2:
-                claim_id, pkg = parts
-                label = f"{pkg} / {claim_id}  [demo]"
-                claims[label] = (None, pkg)
+                cid, pkg = parts
+                label = f"{cid}  [demo]"
+                claims[label] = (None, pkg, cid)
 
     return claims
 
@@ -99,37 +99,80 @@ st.sidebar.title("🏥 NHA PMJAY\nClaims Processor")
 st.sidebar.markdown("---")
 
 all_claims = discover_claims()
-claim_labels = list(all_claims.keys())
 
-selected_label = st.sidebar.selectbox(
-    "Select Claim",
-    claim_labels,
-    help="Choose a claim folder to analyse"
+# Build package → claim_id mapping for filtered selection
+pkg_to_claims: dict = {}
+for label, (cdir, pkg, cid) in all_claims.items():
+    pkg_to_claims.setdefault(pkg, []).append(label)
+
+all_packages = sorted(pkg_to_claims.keys())
+
+st.sidebar.subheader("🔍 Select Claim")
+
+# Step 1 – filter by package
+selected_pkg = st.sidebar.selectbox(
+    "1️⃣ Package Code",
+    ["All Packages"] + all_packages,
+    help="Filter claims by PMJAY package code"
 )
 
-claim_dir, package_code = all_claims[selected_label]
-claim_id = claim_dir.name
+# Step 2 – pick a specific claim
+if selected_pkg == "All Packages":
+    filtered_labels = list(all_claims.keys())
+else:
+    filtered_labels = pkg_to_claims.get(selected_pkg, [])
+
+selected_label = st.sidebar.selectbox(
+    "2️⃣ Claim ID",
+    filtered_labels,
+    help="Select the claim to analyse",
+    format_func=lambda x: all_claims[x][2]   # show only claim_id, not full path
+)
+
+claim_dir, package_code, claim_id = all_claims[selected_label]
 rpath = report_path_for(claim_id, package_code)
 
+# Status indicator
+report_exists = rpath.exists()
+if report_exists:
+    st.sidebar.success(f"✅ Report available — `{package_code}`")
+else:
+    st.sidebar.warning("⚠️ No report yet — run pipeline below")
+
 st.sidebar.markdown("---")
+
 if DEMO_MODE:
     st.sidebar.info("🖥 **Demo mode** — pre-computed reports only.\nTo run live, clone the repo and add claim data locally.")
     run_btn = False
 else:
-    run_btn = st.sidebar.button("▶ Run Pipeline", type="primary", use_container_width=True)
+    run_btn = st.sidebar.button(
+        "▶ Run Pipeline" if not report_exists else "🔄 Re-run Pipeline",
+        type="primary",
+        use_container_width=True,
+        disabled=(claim_dir is None),
+        help="Process this claim through the full compliance pipeline"
+    )
 
 st.sidebar.markdown("---")
 st.sidebar.caption("Problem Statement 01 · NHA Hackathon 2026")
 
 # ── run pipeline if requested ───────────────────────────────────────────────────
 if run_btn:
-    with st.spinner(f"Processing {claim_id} ..."):
+    log_placeholder = st.sidebar.empty()
+    progress = st.sidebar.progress(0, text="Starting pipeline…")
+    with st.spinner(f"Processing **{claim_id}** ({package_code}) …"):
+        progress.progress(20, text="Ingesting documents…")
         ok, out, err = run_pipeline(claim_dir, package_code)
+        progress.progress(100, text="Done")
+    progress.empty()
     if ok and rpath.exists():
-        st.sidebar.success("Pipeline complete ✓")
+        st.sidebar.success("✅ Pipeline complete — report ready")
+        log_placeholder.empty()
+        st.rerun()
     else:
-        st.sidebar.error("Pipeline error")
-        st.sidebar.code(err[-2000:] if err else out[-2000:])
+        st.sidebar.error("❌ Pipeline error")
+        with st.sidebar.expander("Show error log"):
+            st.code((err or out)[-2000:])
 
 # ── main panel ──────────────────────────────────────────────────────────────────
 st.title("NHA PMJAY Automated Claims Processing")

@@ -14,6 +14,8 @@ from src.classification.doc_types import (
     CONTENT_KEYWORDS,
     OTHER,
     ALL_TYPES,
+    CLINICAL_NOTES,
+    NURSING_NOTES,
 )
 from config import (
     FILENAME_LABEL_CONFIDENCE,
@@ -48,7 +50,7 @@ def _parse_label_from_filename(doc_id: str) -> str:
 
 def _label_to_type(label: str) -> Optional[str]:
     """
-    Try exact, then prefix match against FILENAME_LABEL_MAP.
+    Try exact → regex dynamic patterns → stripped base → prefix → substring match.
     """
     if not label:
         return None
@@ -56,19 +58,27 @@ def _label_to_type(label: str) -> Optional[str]:
     if label in FILENAME_LABEL_MAP:
         return FILENAME_LABEL_MAP[label]
 
+    # Dynamic regex patterns for labels like "7D"/"10D" (day notes) and "7N"/"10N" (night notes)
+    if re.match(r'^\d+D$', label):
+        return CLINICAL_NOTES   # e.g. 7D, 9D, 10D = daily clinical progress notes
+    if re.match(r'^\d+N$', label):
+        return NURSING_NOTES    # e.g. 7N, 9N, 10N = night nursing notes
+
     # Strip trailing numbers / _N suffix to get base label
     base = re.sub(r"[_\s]\d+$", "", label).rstrip("_").strip()
     if base in FILENAME_LABEL_MAP:
         return FILENAME_LABEL_MAP[base]
 
     # Prefix match: find all keys that are prefixes of label
-    for key, doc_type in FILENAME_LABEL_MAP.items():
-        if label.startswith(key) or key.startswith(label[:min(6, len(label))]):
-            return doc_type
+    # Only apply when label is long enough to avoid false positives on 1-2 char labels
+    if len(label) >= 3:
+        for key, doc_type in FILENAME_LABEL_MAP.items():
+            if label.startswith(key) or key.startswith(label[:min(6, len(label))]):
+                return doc_type
 
-    # Partial substring match
+    # Partial substring match — require key length >= 3 to avoid single-char key false matches
     for key, doc_type in FILENAME_LABEL_MAP.items():
-        if key in label or label in key:
+        if len(key) >= 3 and (key in label or label in key):
             return doc_type
 
     return None
@@ -85,17 +95,28 @@ def _uuid_like(label: str) -> bool:
 def _classify_by_content(text: str) -> Tuple[Optional[str], float]:
     """
     Score each canonical type by keyword hit density.
+    The first 9 keywords in each list are "strong" signals (3× weight).
     Returns (best_type, confidence) or (None, 0).
     """
     if not text:
         return None, 0.0
 
     text_lower = text.lower()
+    STRONG_N = 9          # first N keywords in each list are "strong"
+    STRONG_WEIGHT = 3.0   # weight multiplier for strong keywords
+
     scores: Dict[str, float] = {}
     for doc_type, keywords in CONTENT_KEYWORDS.items():
-        hits = sum(1 for kw in keywords if kw in text_lower)
-        if hits > 0:
-            scores[doc_type] = hits / len(keywords)
+        strong_kw  = keywords[:STRONG_N]
+        normal_kw  = keywords[STRONG_N:]
+
+        strong_hits = sum(STRONG_WEIGHT for kw in strong_kw if kw in text_lower)
+        normal_hits = sum(1.0           for kw in normal_kw if kw in text_lower)
+        total_hits  = strong_hits + normal_hits
+
+        if total_hits > 0:
+            max_possible = STRONG_N * STRONG_WEIGHT + len(normal_kw)
+            scores[doc_type] = total_hits / max(max_possible, 1)
 
     if not scores:
         return None, 0.0
@@ -103,7 +124,7 @@ def _classify_by_content(text: str) -> Tuple[Optional[str], float]:
     best = max(scores, key=scores.get)
     raw_score = scores[best]
     # Scale to avoid overconfidence: max content confidence = 0.85
-    confidence = min(raw_score * 2.0, 1.0) * CONTENT_MATCH_CONFIDENCE_SCALE
+    confidence = min(raw_score * 2.5, 1.0) * CONTENT_MATCH_CONFIDENCE_SCALE
     return best, confidence
 
 
