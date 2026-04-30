@@ -1,5 +1,5 @@
-name: nha-claims-processor
-framework: streamlit
-entrypoint: app.py
+name: nha-claims-processor-api
+framework: python
+entrypoint: api.py
 requirements: requirements.txt
 packages: packages.txt

@@ -343,7 +343,7 @@ with tab3:
                 return "background-color:#f8d7da"
             return "background-color:#fff3cd"
         st.dataframe(
-            df.style.applymap(colour_validity, subset=["Validity"]),
+            df.style.map(colour_validity, subset=["Validity"]),
             use_container_width=True, hide_index=True
         )
     else:
