@@ -1,0 +1,5 @@
+name: nha-claims-processor
+framework: streamlit
+entrypoint: app.py
+requirements: requirements.txt
+packages: packages.txt
