@@ -1,4 +1,14 @@
 tesseract-ocr
 tesseract-ocr-eng
+ghostscript
 libgl1-mesa-glx
 libglib2.0-0
+libsm6
+libxext6
+libxrender-dev
+libffi-dev
+libssl-dev
+zlib1g-dev
+libjpeg-dev
+libpng-dev
+libtiff-dev

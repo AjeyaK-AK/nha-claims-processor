@@ -1,9 +1,9 @@
 """
 NHA PMJAY Claims Processing – REST API
-Upload claim documents (ZIP), run the pipeline, get JSON/HTML results.
+Upload claim documents (PDF, PNG, JPG, etc.), run the pipeline, get JSON/HTML results.
 
 Endpoints:
-  POST /api/upload              – upload zip + package_code → job_id
+  POST /api/upload              – upload files + package_code → job_id
   GET  /api/status/{job_id}     – poll processing status
   GET  /api/result/{job_id}     – download JSON report
   GET  /api/report/{job_id}     – view HTML report
@@ -16,14 +16,14 @@ from __future__ import annotations
 import io
 import json
 import logging
+import os
 import shutil
 import tempfile
 import traceback
 import uuid
-import zipfile
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 
 from fastapi import BackgroundTasks, FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -70,28 +70,6 @@ def _sanitize_package_code(code: str) -> str:
     if not cleaned:
         raise ValueError("Invalid package_code")
     return cleaned.upper()
-
-
-def _extract_upload(zip_bytes: bytes, dest_dir: Path) -> None:
-    """Extract uploaded ZIP, rejecting unsafe paths and unsupported files."""
-    with zipfile.ZipFile(io.BytesIO(zip_bytes)) as zf:
-        for member in zf.infolist():
-            # Security: reject absolute paths and path-traversal
-            member_path = Path(member.filename)
-            if member_path.is_absolute() or ".." in member_path.parts:
-                raise ValueError(f"Unsafe path in ZIP: {member.filename}")
-
-            suffix = member_path.suffix.lower()
-            # Skip directories and unsupported file types
-            if member.is_dir():
-                continue
-            if suffix not in ALLOWED_EXTENSIONS:
-                log.warning("Skipping unsupported file in ZIP: %s", member.filename)
-                continue
-
-            # Flatten: all files go directly into dest_dir
-            out_path = dest_dir / member_path.name
-            out_path.write_bytes(zf.read(member.filename))
 
 
 def _run_pipeline(job_id: str) -> None:
@@ -149,12 +127,12 @@ async def index():
 @app.post("/api/upload")
 async def upload_claim(
     background_tasks: BackgroundTasks,
-    file: UploadFile = File(..., description="ZIP archive containing claim documents"),
+    files: List[UploadFile] = File(..., description="Claim document files (PDF, PNG, JPG, etc.)"),
     package_code: str = Form(..., description="Package code, e.g. SB039A"),
-    claim_id: Optional[str] = Form(None, description="Claim ID (optional, derived from filename if omitted)"),
+    claim_id: Optional[str] = Form(None, description="Claim ID (optional, auto-generated if omitted)"),
 ):
     """
-    Upload a ZIP of claim documents and start processing.
+    Upload multiple claim document files and start processing.
     Returns a job_id to poll for status.
     """
     # Validate package_code
@@ -163,20 +141,35 @@ async def upload_claim(
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-    # Validate file type
-    if not (file.filename or "").lower().endswith(".zip"):
-        raise HTTPException(status_code=400, detail="Only ZIP files are accepted.")
+    # Validate files
+    if not files:
+        raise HTTPException(status_code=400, detail="At least one file must be uploaded.")
 
-    # Read upload (size limit)
-    zip_bytes = await file.read()
-    size_mb = len(zip_bytes) / (1024 * 1024)
-    if size_mb > MAX_UPLOAD_MB:
-        raise HTTPException(status_code=413, detail=f"File too large ({size_mb:.1f} MB > {MAX_UPLOAD_MB} MB limit).")
+    total_size = 0
+    for file in files:
+        # Check file extension
+        suffix = Path(file.filename or "").suffix.lower()
+        if suffix not in ALLOWED_EXTENSIONS:
+            raise HTTPException(
+                status_code=400,
+                detail=f"File '{file.filename}' has unsupported extension. Allowed: {', '.join(ALLOWED_EXTENSIONS)}"
+            )
+        # Accumulate size
+        file_size = len(await file.read())
+        total_size += file_size
+        # Reset file pointer for later reading
+        await file.seek(0)
+
+    # Check total size limit
+    total_size_mb = total_size / (1024 * 1024)
+    if total_size_mb > MAX_UPLOAD_MB:
+        raise HTTPException(status_code=413, detail=f"Total files too large ({total_size_mb:.1f} MB > {MAX_UPLOAD_MB} MB limit).")
 
     # Derive claim_id
     if not claim_id:
-        stem = Path(file.filename).stem
-        claim_id = stem if stem else "CLAIM"
+        # Use timestamp-based ID if no claim_id provided
+        import time
+        claim_id = f"CLAIM_{int(time.time())}"
     # Sanitize claim_id
     claim_id = "".join(c for c in claim_id if c.isalnum() or c in "_-")[:64] or "CLAIM"
 
@@ -186,12 +179,16 @@ async def upload_claim(
     claim_dir = work_dir / "claim"
     claim_dir.mkdir(parents=True, exist_ok=True)
 
-    # Extract files
+    # Save uploaded files
     try:
-        _extract_upload(zip_bytes, claim_dir)
-    except (zipfile.BadZipFile, ValueError) as e:
+        for file in files:
+            file_path = claim_dir / file.filename
+            content = await file.read()
+            with open(file_path, "wb") as f:
+                f.write(content)
+    except Exception as e:
         shutil.rmtree(work_dir, ignore_errors=True)
-        raise HTTPException(status_code=400, detail=f"Invalid ZIP: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to save files: {e}")
 
     # Register job
     _JOBS[job_id] = {
@@ -339,11 +336,11 @@ def _upload_form_html() -> str:
 <body>
 <div class="card">
   <h1>🏥 PMJAY Claims Processor</h1>
-  <p class="subtitle">Upload a ZIP of claim documents for automated audit analysis.</p>
+  <p class="subtitle">Upload claim document files for automated audit analysis.</p>
 
   <form id="upload-form">
-    <label for="file">Claim Documents (ZIP)</label>
-    <input type="file" id="file" name="file" accept=".zip" required/>
+    <label for="file">Claim Documents</label>
+    <input type="file" id="file" name="file" accept=".pdf,.png,.jpg,.jpeg,.tiff,.tif,.bmp" multiple required/>
 
     <label for="package_code">Package Code</label>
     <input type="text" id="package_code" name="package_code"
@@ -351,7 +348,7 @@ def _upload_form_html() -> str:
 
     <label for="claim_id">Claim ID (optional)</label>
     <input type="text" id="claim_id" name="claim_id"
-           placeholder="Leave blank to use filename" maxlength="64"/>
+           placeholder="Leave blank for auto-generated ID" maxlength="64"/>
 
     <button type="submit">Upload &amp; Process</button>
   </form>
@@ -417,4 +414,5 @@ def _upload_form_html() -> str:
 # ── entrypoint ────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("api:app", host="0.0.0.0", port=8000, reload=False)
+    port = int(os.environ.get("PORT", "8000"))
+    uvicorn.run("api:app", host="0.0.0.0", port=port, reload=False)
